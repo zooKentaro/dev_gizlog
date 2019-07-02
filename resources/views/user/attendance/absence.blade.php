@@ -4,16 +4,16 @@
 <h2 class="brand-header">欠席登録</h2>
 <div class="main-wrap">
   <div class="container">
-    {!! Form::open(['route' => 'attendance.absence.store']) !!}
-      {!! Form::input('hidden', 'date', Carbon::now()->format('Y-m-d')) !!}
-      {!! Form::input('hidden', 'absent_flg', 1) !!}
-      {!! Form::input('hidden', 'user_id', Auth::id() ) !!}
-      <div class="form-group {{ $errors->has('absent_reason')? 'has-error' : '' }}">
-        {!! Form::textarea('absent_reason', null, ['class' => 'form-control', 'placeholder' => '欠席理由を入力してください。']) !!}
-        <span class="help-block">{{ $errors->first('absent_reason') }}</span>
+    <form method="POST" action="/attendance/absence" accept-charset="UTF-8">
+      <input name="date" type="hidden" value="">
+      <input name="absent_flg" type="hidden" value="">
+      <input name="user_id" type="hidden" value="">
+      <div class="form-group">
+        <textarea class="form-control" placeholder="欠席理由を入力してください。" name="absent_reason" cols="50" rows="10"></textarea>
+        <span class="help-block"></span>
       </div>
-      {!! Form::submit('register', ['name' => 'confirm', 'class' => 'btn btn-success pull-right']) !!}
-    {!! Form::close() !!}
+      <input name="confirm" class="btn btn-success pull-right" type="submit" value="register">
+    </form>
   </div>
 </div>
 

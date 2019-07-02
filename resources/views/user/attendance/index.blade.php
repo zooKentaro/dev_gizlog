@@ -8,30 +8,22 @@
   <div id="clock" class="light">
     <div class="display">
       <div class="weekdays"></div>
-      <div class="today"></i></div>
+      <div class="today"></div>
       <div class="digits"></div>
     </div>
   </div>
   <div class="button-holder">
-    @if (empty($attendance))
       <a class="button start-btn" id="register-attendance" href=#openModal>出社時間登録</a>
-    @elseif ($attendance->absent_flg === 1)
-      <a class="button disabled" href="">欠席</a>
-    @elseif (!empty($attendance->start_time) && !empty($attendance->end_time))
-      <a class="button disabled" href="">退社済み</a>
-    @else
-      <a class="button end-btn" id="register-attendance" href=#openModal>退社時間登録</a>
-    @endif
   </div>
   <ul class="button-wrap">
     <li>
-      <a class="at-btn absence" href="{{ route('attendance.absence') }}">欠席登録</a>
+      <a class="at-btn absence" href="/attendance/absence">欠席登録</a>
     </li>
     <li>
-      <a class="at-btn modify" href="{{ route('attendance.modify') }}">修正申請</a>
+      <a class="at-btn modify" href="/attendance/modify">修正申請</a>
     </li>
     <li>
-      <a class="at-btn my-list" href="{{ route('attendance.mypage') }}">マイページ</a>
+      <a class="at-btn my-list" href="/attendance/mypage">マイページ</a>
     </li>
   </ul>
 </div>

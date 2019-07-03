@@ -8,7 +8,7 @@
       <p>想定出席人数</p>
       <div class="study-hour-box clearfix">
         <div class="userinfo-box"><i class="fa fa-user fa-2x" aria-hidden="true"></i></div>
-        <p class="study-hour"><span>{{ count($userInfos) }}</span>人</p>
+        <p class="study-hour"><span>3</span>人</p>
       </div>
     </div>
   </div>
@@ -26,18 +26,14 @@
         </tr>
       </thead>
       <tbody>
-        @foreach ($userInfos as $userInfo)
-          @if (!empty($userInfo->attendance) && !$userInfo->attendance->absent_flg)
-            <tr class="row">
-              <td class="col-xs-1"><img src="{{ $userInfo->avatar }}" class="avatar-img"></td>
-              <td class="col-xs-2">{{ $userInfo->name }}</td>
-              <td class="col-xs-2">{{ $userInfo->created_at->format('Y/m/d') }}</td>
-              <td class="col-xs-3">{{ $userInfo->attendance->start_time->format('H:i') }}</td>
-              <td class="col-xs-2">-</td>
-              <td class="col-xs-2"><a href="{{ route('admin.attendance.user', $userInfo->id) }}" class="btn btn-sucssess"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></td>
-            </tr>
-          @endif
-        @endforeach
+        <tr class="row">
+          <td class="col-xs-1"><img src="https://avatars.slack-edge.com/2019-01-25/532734044915_486bec3294a9f7b34291_192.png" class="avatar-img"></td>
+          <td class="col-xs-2">Kiyoshi Sakata</td>
+          <td class="col-xs-2">2019/07/02</td>
+          <td class="col-xs-3">09:45</td>
+          <td class="col-xs-2">-</td>
+          <td class="col-xs-2"><a href="/admin/attendance/1/user" class="btn btn-sucssess"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -53,16 +49,12 @@
         </tr>
       </thead>
       <tbody>
-        @foreach ($userInfos as $userInfo)
-          @if (empty($userInfo->attendance))
-            <tr class="row">
-              <td class="col-xs-1"><img src="{{ $userInfo->avatar }}" class="avatar-img"></td>
-              <td class="col-xs-4">{{ $userInfo->name }}</td>
-              <td class="col-xs-4">{{ $userInfo->created_at->format('Y/m/d') }}</td>
-              <td class="col-xs-3"><a href="{{ route('admin.attendance.user', $userInfo->id) }}" class="btn btn-sucssess"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></td>
-            </tr>
-          @endif
-        @endforeach
+        <tr class="row">
+          <td class="col-xs-1"><img src="https://avatars.slack-edge.com/2019-01-11/521652138498_a80d324258d73c87ad2e_192.jpg" class="avatar-img"></td>
+          <td class="col-xs-4">Daichi Ando</td>
+          <td class="col-xs-4">2017/04/03</td>
+          <td class="col-xs-3"><a href="/admin/attendance/2/user" class="btn btn-sucssess"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -78,20 +70,15 @@
         </tr>
       </thead>
       <tbody>
-        @foreach ($userInfos as $userInfo)
-          @if (!empty($userInfo->attendance) && $userInfo->attendance->absent_flg)
-            <tr class="row">
-              <td class="col-xs-1"><img src="{{ $userInfo->avatar }}" class="avatar-img"></td>
-              <td class="col-xs-4">{{ $userInfo->name }}</td>
-              <td class="col-xs-4">{{ $userInfo->created_at->format('Y/m/d') }}</td>
-              <td class="col-xs-3"><a href="{{ route('admin.attendance.user', $userInfo->id) }}" class="btn btn-sucssess"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></td>
-            </tr>
-          @endif
-        @endforeach
+        <tr class="row">
+          <td class="col-xs-1"><img src="https://avatars.slack-edge.com/2019-01-25/532734044915_486bec3294a9f7b34291_192.png" class="avatar-img"></td>
+          <td class="col-xs-4">Shohei Kanatani</td>
+          <td class="col-xs-4">2017/04/03</td>
+          <td class="col-xs-3"><a href="/admin/attendance/4/user" class="btn btn-sucssess"><i class="fa fa-file-text-o" aria-hidden="true"></i></a></td>
+        </tr>
       </tbody>
     </table>
   </div>
-
 </div>
 
 @endsection

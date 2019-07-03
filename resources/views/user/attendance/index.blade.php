@@ -30,22 +30,15 @@
 
 <div id="openModal" class="modalDialog">
   <div>
-    <div class="register-text-wrap">
-      <p>Cancelを押して再度登録してください</p>
-    </div>
+    <div class="register-text-wrap"><p>12:38 で出社時間を登録しますか？</p></div>
     <div class="register-btn-wrap">
-      @if (empty($attendance))
-        {!! Form::open(['route' => 'attendance.register.start']) !!}
-          {!! Form::input('hidden', 'start_time', null, ['id' => 'date-time-target']) !!}
-      @else
-        {!! Form::open(['route' => ['attendance.register.end', $attendance->id], 'method' => 'put']) !!}
-          {!! Form::input('hidden', 'end_time', null, ['id' => 'date-time-target']) !!}
-      @endif
-        {!! Form::input('hidden', 'user_id', Auth::id() ) !!}
-        {!! Form::input('hidden', 'date', Carbon::now()->format('Y-m-d')) !!}
+      <form method="POST" action="/attendance/register" accept-charset="UTF-8">
+        <input id="date-time-target" name="start_time" type="hidden" value="2019-07-03 12:38:41">
+        <input name="user_id" type="hidden" value="4">
+        <input name="date" type="hidden" value="2019-07-03">
         <a href="#close" class="cancel-btn">Cancel</a>
-        {!! Form::submit('Yes', ['class' => 'yes-btn']) !!}
-      {!! Form::close() !!}
+        <input class="yes-btn" type="submit" value="Yes">
+      </form>
     </div>
   </div>
 </div>

@@ -5,45 +5,43 @@
 <div class="main-wrap">
   <div class="user-info-box clearfix">
     <div class="left-info">
-      <img src="{{ $userInfo->avatar }}"><p class="user-name">{{ $userInfo->name }}</p>
-      <i class="fa fa-envelope-o" aria-hidden="true"><p class="user-email">{{ $userInfo->email }}</p></i>
+      <img src="https://avatars.slack-edge.com/2019-01-25/532734044915_486bec3294a9f7b34291_192.png"><p class="user-name">Shohei Kanatani</p>
+      <i class="fa fa-envelope-o" aria-hidden="true"><p class="user-email">gizumo@test.com</p></i>
     </div>
     <div class="right-info">
       <div class="my-info">
         <p>研修開始日</p>
         <div class="study-hour-box clearfix">
-          <p class="study-hour study-date"><span>{{ $userInfo->created_at->format('Y/m/d') }}</span></p>
+          <p class="study-hour study-date"><span>2019/07/02</span></p>
         </div>
       </div>
     </div>
   </div>
-
   <div class="attendance-modify-box">
-    {!! Form::open(['route' => ['admin.attendance.user.update', $userInfo->id], 'method' => 'post']) !!}
-      {!! Form::input('hidden', 'user_id', $userInfo->id) !!}
+    <form method="POST" action="/admin/attendance/4/user" accept-charset="UTF-8"><input name="_token" type="hidden" value="dGHHSp0GEt2BCJE2VmBK6fq5uufqfC9jFF9L99aX">
+      <input name="user_id" type="hidden" value="4">
       <div class="form-group date-form">
-        {!! Form::input('date', 'date', null, ['class' => 'form-control']) !!}
+        <input class="form-control" name="date" type="date">
       </div>
       <div class="form-group">
-        {!! Form::input('time', 'start_time', null, ['class' => 'form-control']) !!}
+        <input class="form-control" name="start_time" type="time">
       </div>
       <p class="to-time">to</p>
       <div class="form-group">
-        {!! Form::input('time', 'end_time', null, ['class' => 'form-control']) !!}
+        <input class="form-control" name="end_time" type="time">
       </div>
-      {!! Form::button('作成', ['class' => 'btn btn-modify', 'type' => 'submit']) !!}
-    {!! Form::close() !!}
-    {!! Form::open(['route' => ['admin.attendance.user.update', $userInfo->id], 'method' => 'post']) !!}
-      {!! Form::input('hidden', 'user_id', $userInfo->id) !!}
-      {!! Form::input('hidden', 'start_time', null) !!}
-      {!! Form::input('hidden', 'end_time', null) !!}
-      {!! Form::input('hidden', 'absent_flg', 1) !!}
-      {!! Form::input('hidden', 'absent_reason', '管理画面から登録') !!}
-      {!! Form::input('hidden', 'date', null, ['id' => 'date-target']) !!}
-      {!! Form::button('欠席', ['class' => 'btn btn-danger', 'type' => 'submit']) !!}
-    {!! Form::close() !!}
+      <button class="btn btn-modify" type="submit">作成</button>
+    </form>
+    <form method="POST" action="/admin/attendance/4/user" accept-charset="UTF-8"><input name="_token" type="hidden" value="dGHHSp0GEt2BCJE2VmBK6fq5uufqfC9jFF9L99aX">
+      <input name="user_id" type="hidden" value="4">
+      <input name="start_time" type="hidden">
+      <input name="end_time" type="hidden">
+      <input name="absent_flg" type="hidden" value="1">
+      <input name="absent_reason" type="hidden" value="管理画面から登録">
+      <input id="date-target" name="date" type="hidden">
+      <button class="btn btn-danger" type="submit">欠席</button>
+    </form>
   </div>
-
 </div>
 
 @endsection

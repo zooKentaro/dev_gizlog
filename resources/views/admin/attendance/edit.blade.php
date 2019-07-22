@@ -30,43 +30,28 @@
       <p>修正申請内容</p>
     </div>
     <div class="request-content">
-      申し訳ありません。
-      出社の打刻を忘れてしまいました。
+      申し訳ありません。出社の打刻を忘れてしまいました。
+      9:55に出社いたしましたので修正お願いします。
     </div>
   </div>
   <div class="attendance-modify-box">
-    <form method="POST" action="/admin/attendance/4/user" accept-charset="UTF-8">
-      <input name="_method" type="hidden" value="PUT">
-      <input name="id" type="hidden" value="3">
-      <input name="date" type="hidden" value="2019-07-03">
-      <input name="request_content" type="hidden">
-      <input name="absent_flg" type="hidden" value="0">
-      <input name="absent_reason" type="hidden">
-      <div class="form-group ">
-        <input class="form-control" name="start_time" type="time" value="10:56">
+    <form>
+      <div class="form-group">
+        <input class="form-control" name="" type="time" value="10:56">
         <span class="help-block"></span>
       </div>
       <p class="to-time">to</p>
-      <div class="form-group ">
-        <input class="form-control" name="end_time" type="time" value="10:00">
+      <div class="form-group">
+        <input class="form-control" name="end_time" type="time" value="19:26">
         <span class="help-block"></span>
       </div>
       <button type="submit" class="btn btn-modify">修正</button>
     </form>
-    <form method="POST" action="/admin/attendance/4/user" accept-charset="UTF-8">
-      <input name="_method" type="hidden" value="PUT">
-      <input name="id" type="hidden" value="3">
-      <input name="start_time" type="hidden">
-      <input name="end_time" type="hidden">
-      <input name="request_content" type="hidden">
-      <input name="absent_flg" type="hidden" value="1">
-      <input name="absent_reason" type="hidden" value="管理画面から登録">
-      <input name="date" type="hidden" value="2019-07-03">
+    <form>
       <button type="submit" class="btn btn-danger">欠席</button>
     </form>
   </div>
 </div>
 
 @endsection
-
 

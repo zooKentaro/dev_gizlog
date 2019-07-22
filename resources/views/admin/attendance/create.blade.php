@@ -18,27 +18,20 @@
     </div>
   </div>
   <div class="attendance-modify-box">
-    <form method="POST" action="/admin/attendance/4/user" accept-charset="UTF-8"><input name="_token" type="hidden" value="dGHHSp0GEt2BCJE2VmBK6fq5uufqfC9jFF9L99aX">
-      <input name="user_id" type="hidden" value="4">
+    <form>
       <div class="form-group date-form">
-        <input class="form-control" name="date" type="date">
+        <input class="form-control" name="" type="date">
       </div>
       <div class="form-group">
-        <input class="form-control" name="start_time" type="time">
+        <input class="form-control" name="" type="time">
       </div>
       <p class="to-time">to</p>
       <div class="form-group">
-        <input class="form-control" name="end_time" type="time">
+        <input class="form-control" name="" type="time">
       </div>
       <button class="btn btn-modify" type="submit">作成</button>
     </form>
-    <form method="POST" action="/admin/attendance/4/user" accept-charset="UTF-8"><input name="_token" type="hidden" value="dGHHSp0GEt2BCJE2VmBK6fq5uufqfC9jFF9L99aX">
-      <input name="user_id" type="hidden" value="4">
-      <input name="start_time" type="hidden">
-      <input name="end_time" type="hidden">
-      <input name="absent_flg" type="hidden" value="1">
-      <input name="absent_reason" type="hidden" value="管理画面から登録">
-      <input id="date-target" name="date" type="hidden">
+    <form>
       <button class="btn btn-danger" type="submit">欠席</button>
     </form>
   </div>

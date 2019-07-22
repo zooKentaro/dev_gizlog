@@ -38,6 +38,19 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
     Route::post('question/{id}/comment', ['as' => 'question.comment', 'uses' => 'QuestionController@storeComment']);
     Route::resource('question', QuestionController::class);
 
+    Route::get('attendance', function () {
+        return view('user.attendance.index');
+    });
+    Route::get('attendance/absence', function () {
+        return view('user.attendance.absence');
+    });
+    Route::get('attendance/modify', function () {
+        return view('user.attendance.modify');
+    });
+    Route::get('attendance/mypage', function () {
+        return view('user.attendance.mypage');
+    });
+
 });
 
 
@@ -48,17 +61,27 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.' ,'namespace' => 'Admin'], fu
     Route::post('login', ['as' => 'login', 'uses' => 'Auth\LoginController@login']);
     Route::post('logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
 
-    Route::resource('report', DailyReportController::class, ['only' => ['index', 'show']]);
     Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
-    Route::get('attendance', ['as' => 'attendance.index', 'uses' => 'AttendanceController@index']);
-    Route::get('attendance/{id}/user', ['as' => 'attendance.user', 'uses' => 'AttendanceController@user']);
-    Route::get('attendance/{id}/user/create', ['as' => 'attendance.user.create', 'uses' => 'AttendanceController@create']);
-    Route::get('attendance/{id}/user/edit/{date}', ['as' => 'attendance.user.edit', 'uses' => 'AttendanceController@edit']);
-    Route::post('attendance/{id}/user', ['as' => 'attendance.user.store', 'uses' => 'AttendanceController@store']);
-    Route::put('attendance/{id}/user', ['as' => 'attendance.user.update', 'uses' => 'AttendanceController@update']);
-    Route::get('report', ['as' => 'report.index', 'uses' => 'DailyReportController@index']);
-    Route::get('report/{id}/show', ['as' => 'report.show', 'uses' => 'DailyReportController@show']);
+    Route::get('attendance', function () {
+        return view('admin.attendance.index');
+    });
+
+    Route::get('attendance/create', function () {
+        return view('admin.attendance.create');
+    });
+
+    Route::get('attendance/edit', function () {
+        return view('admin.attendance.edit');
+    });
+
+    Route::get('attendance/user', function () {
+        return view('admin.attendance.user');
+    });
+
+    Route::get('report', function () {
+        abort(404);
+    });
 
     Route::get('question', function () {
         abort(404);

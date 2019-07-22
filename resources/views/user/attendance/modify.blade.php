@@ -4,17 +4,14 @@
 <h2 class="brand-header">修正申請</h2>
 <div class="main-wrap">
   <div class="container">
-    <form method="POST" action="/attendance/modify" accept-charset="UTF-8">
-      <input name="user_id" type="hidden" value="">
+    <form>
       <div class="form-group form-size-small">
-        <input class="form-control" name="date" type="date" value="">
-        <span class="help-block"></span>
+        <input class="form-control" name="" type="date" value="">
       </div>
       <div class="form-group">
-        <textarea class="form-control" placeholder="修正申請の内容を入力してください。" name="request_content" cols="50" rows="10"></textarea>
-        <span class="help-block"></span>
+        <textarea class="form-control" placeholder="修正申請の内容を入力してください。" name="" cols="50" rows="10"></textarea>
       </div>
-      <input class="btn btn-success pull-right" type="submit" value="submit">
+      <input class="btn btn-success pull-right" type="submit" value="申請">
     </form>
   </div>
 </div>

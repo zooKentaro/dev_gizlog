@@ -32,7 +32,7 @@
     </div>
   </div>
   <div class="btn-wrapper">
-    <a href="/admin/attendance/1/user/create" class="btn btn-icon">
+    <a href="" class="btn btn-icon">
       <i class="fa fa-plus" aria-hidden="true"></i>
     </a>
   </div>
@@ -58,7 +58,7 @@
           <td class="col-xs-2">-</td>
           <td class="col-xs-2">-</td>
           <td class="col-xs-2">
-            <a href="/admin/attendance/4/user/edit/2019-07-03" class="btn btn-sucssess btn-small">
+            <a href="" class="btn btn-sucssess btn-small">
               <i class="fa fa-pencil" aria-hidden="true"></i>
             </a>
           </td>
@@ -71,7 +71,7 @@
           <td class="col-xs-2">19:30</td>
           <td class="col-xs-2"><span class="attention">あり</span></td>
           <td class="col-xs-2">
-            <a href="/admin/attendance/4/user/edit/2019-07-02" class="btn btn-sucssess btn-small">
+            <a href="" class="btn btn-sucssess btn-small">
               <i class="fa fa-pencil" aria-hidden="true"></i>
             </a>
           </td>
@@ -84,7 +84,7 @@
           <td class="col-xs-2">19:58</td>
           <td class="col-xs-2">-</td>
           <td class="col-xs-2">
-            <a href="/admin/attendance/4/user/edit/2019-07-02" class="btn btn-sucssess btn-small">
+            <a href="" class="btn btn-sucssess btn-small">
               <i class="fa fa-pencil" aria-hidden="true"></i>
             </a>
           </td>

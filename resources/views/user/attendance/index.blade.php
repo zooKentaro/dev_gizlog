@@ -32,7 +32,7 @@
   <div>
     <div class="register-text-wrap"><p>12:38 で出社時間を登録しますか？</p></div>
     <div class="register-btn-wrap">
-      <form method="POST" action="/attendance/register" accept-charset="UTF-8">
+      <form>
         <input id="date-time-target" name="start_time" type="hidden" value="2019-07-03 12:38:41">
         <input name="user_id" type="hidden" value="4">
         <input name="date" type="hidden" value="2019-07-03">

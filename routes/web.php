@@ -38,6 +38,11 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
     Route::post('question/{id}/comment', ['as' => 'question.comment', 'uses' => 'QuestionController@storeComment']);
     Route::resource('question', QuestionController::class);
 
+    /* 
+     * ----------------------------------------------------------
+     * 静的なページが簡単に確認できるように ClosureでViewを返しています。処理に応じて編集してください。
+     * 尚、このコメントアウトはコード提出の際は削除してください。
+     */
     Route::get('attendance', function () {
         return view('user.attendance.index');
     });
@@ -50,6 +55,9 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
     Route::get('attendance/mypage', function () {
         return view('user.attendance.mypage');
     });
+    /*
+     * ---------------------------------------------------------
+     */
 
 });
 
@@ -63,38 +71,39 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.' ,'namespace' => 'Admin'], fu
 
     Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
+    /* 
+     * ----------------------------------------------------------
+     * 静的なページが簡単に確認できるように ClosureでViewを返しています。処理に応じて編集してください。
+     * 尚、このコメントアウトはコード提出の際は削除してください。
+     */
     Route::get('attendance', function () {
         return view('admin.attendance.index');
     });
-
     Route::get('attendance/create', function () {
         return view('admin.attendance.create');
     });
-
     Route::get('attendance/edit', function () {
         return view('admin.attendance.edit');
     });
-
     Route::get('attendance/user', function () {
         return view('admin.attendance.user');
     });
+    /*
+     * ---------------------------------------------------------
+     */
 
     Route::get('report', function () {
         abort(404);
     });
-
     Route::get('question', function () {
         abort(404);
     });
-
     Route::get('user', function () {
         abort(404);
     });
-
     Route::get('adminuser', function () {
         abort(404);
     });
-
     Route::get('contact', function () {
         abort(404);
     });

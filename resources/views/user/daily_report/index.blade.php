@@ -3,6 +3,7 @@
 
 <h2 class="brand-header">日報一覧</h2>
 <div class="main-wrap">
+  @foreach ($todos as $todo)
   <div class="btn-wrapper daily-report">
     <form>
       <input class="form-control" name="search-month" type="month">
@@ -22,14 +23,15 @@
       </thead>
       <tbody>
           <tr class="row">
-            <td class="col-xs-2"></td>
-            <td class="col-xs-3"></td>
-            <td class="col-xs-5"></td>
+            <td class="col-xs-2">{{ $todo->reporting_time->format('m/d (D)') }}</td>
+            <td class="col-xs-3">{{ $todo->title }}</td>
+            <td class="col-xs-5">{{ $todo->content }}</td>
             <td class="col-xs-2"><a class="btn" href=""><i class="fa fa-book"></i></a></td>
           </tr>
       </tbody>
     </table>
   </div>
+  @endforeach
 </div>
 
 @endsection

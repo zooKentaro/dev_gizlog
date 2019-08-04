@@ -3,21 +3,22 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+// use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Todo;
 
 class UserController extends Controller
 {
-    public $users;
+    public $todo;
 
     /**
      * UserController constructor.
      * @param User $users
      */
-    public function __construct(User $users)
+    public function __construct(Todo $todo)
     {
         $this->middleware('auth');
-        $this->users = $users;
+        $this->todo = $todo;
     }
 
     /**
@@ -26,8 +27,8 @@ class UserController extends Controller
     public function index()
     {
         $userId = Auth::id();
-        $userInfos = $this->users->find($userId);
-        return view('user.home.index', compact('userInfos'));
+        $todos = $this->todo->getByUserId($userId);
+        return view('user.daily_report.index', compact('todos'));
     }
 }
 

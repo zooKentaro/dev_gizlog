@@ -30,5 +30,10 @@ class UserController extends Controller
         $todos = $this->todo->getByUserId($userId);
         return view('user.daily_report.index', compact('todos'));
     }
+
+    public function create()
+    {
+        return view('user.daily_report.create');
+    }
 }
 

@@ -50,5 +50,16 @@ class UserController extends Controller
         $todo = $this->todo->find($id);
         return view('user.daily_report.show', compact('todo'));
     }
+
+    public function edit($id)
+    {
+        $todo = $this->todo->find($id);
+        return view('user.daily_report.edit', compact('todo'));
+    }
+
+    public function update()
+    {
+
+    }
 }
 

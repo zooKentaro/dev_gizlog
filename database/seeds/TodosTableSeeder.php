@@ -14,7 +14,7 @@ class TodosTableSeeder extends Seeder
     {
     	DB::table('todos')->truncate();
         DB::table('todos')->insert([
-		[
+		  [
 	        'title' => 'test',
             'created_at' => Carbon::create(2018, 1, 1),
 		    'updated_at' => Carbon::create(2018, 1, 4),
@@ -22,7 +22,7 @@ class TodosTableSeeder extends Seeder
 		    'contents'=>'text',
 		    'reporting_time'=>Carbon::create(2018,1,1),
 		    'deleted_at'=>Carbon::create(NULL),
-		]
-	]);
+		  ]
+	    ]);
     }
 }

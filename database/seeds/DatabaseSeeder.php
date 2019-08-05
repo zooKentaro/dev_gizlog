@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             QuestionsTableSeeder::class,
             CommentsTableSeeder::class,
 	        AttendanceSeeder::class,
-	        TodosTableSeeder::class
+	        ReportsTableSeeder::class
         ]);
     }
 }

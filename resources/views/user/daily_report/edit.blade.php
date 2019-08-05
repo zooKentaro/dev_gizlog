@@ -5,7 +5,7 @@
 <div class="main-wrap">
   <div class="container">
     <form>
-      {{ Form::open(['route' => ['daily_report.update', $todo->id], 'method' => 'PUT']) }}
+      {{ Form::open(['route' => ['daily_report.update', $report->id], 'method' => 'PUT']) }}
       <input class="form-control" name="user_id" type="hidden" value="4">
       <div class="form-group form-size-small">
         <input class="form-control" name="reporting_time" type="date">

@@ -21,12 +21,12 @@
         </tr>
       </thead>
       <tbody>
-        @foreach ($todos as $todo)
+        @foreach ($reports as $report)
           <tr class="row">
-            <td class="col-xs-2">{{ $todo->reporting_time->format('m/d (D)') }}</td>
-            <td class="col-xs-3">{{ $todo->title }}</td>
-            <td class="col-xs-5">{{ $todo->contents }}</td>
-            <td class="col-xs-2"><a class="btn" href="{{ route('daily_report.show',$todo->id) }}"><i class="fa fa-book"></i></a></td>
+            <td class="col-xs-2">{{ $report->reporting_time->format('m/d (D)') }}</td>
+            <td class="col-xs-3">{{ $report->title }}</td>
+            <td class="col-xs-5">{{ $report->contents }}</td>
+            <td class="col-xs-2"><a class="btn" href="{{ route('daily_report.show', $report->id) }}"><i class="fa fa-book"></i></a></td>
           </tr>
         @endforeach
       </tbody>

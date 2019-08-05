@@ -6,20 +6,20 @@ use App\Http\Controllers\Controller;
 // use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Todo;
+use App\Models\Report;
 
 class UserController extends Controller
 {
-    public $todo;
+    public $report;
 
     /**
      * UserController constructor.
      * @param User $users
      */
-    public function __construct(Todo $todo)
+    public function __construct(Report $report)
     {
         $this->middleware('auth');
-        $this->todo = $todo;
+        $this->report = $report;
     }
 
     /**
@@ -28,8 +28,8 @@ class UserController extends Controller
     public function index()
     {
         $userId = Auth::id();
-        $todos = $this->todo->getByUserId($userId);
-        return view('user.daily_report.index', compact('todos'));
+        $reports = $this->report->getByUserId($userId);
+        return view('user.daily_report.index', compact('reports'));
     }
 
     public function create()
@@ -41,20 +41,20 @@ class UserController extends Controller
     {
         $input = $request->all();
         $input['user_id'] = Auth::id();
-        $this->todo->fill($input)->save();
+        $this->report->fill($input)->save();
         return redirect()->to('home');
     }
 
     public function show($id)
     {
-        $todo = $this->todo->find($id);
-        return view('user.daily_report.show', compact('todo'));
+        $report = $this->report->find($id);
+        return view('user.daily_report.show', compact('report'));
     }
 
     public function edit($id)
     {
-        $todo = $this->todo->find($id);
-        return view('user.daily_report.edit', compact('todo'));
+        $report = $this->report->find($id);
+        return view('user.daily_report.edit', compact('report'));
     }
 
     public function update()

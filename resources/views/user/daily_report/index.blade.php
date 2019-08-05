@@ -11,7 +11,6 @@
     <a class="btn btn-icon" href="user/daily_report/create"><i class="fa fa-plus"></i></a>
   </div>
   <div class="content-wrapper table-responsive">
-  @foreach ($todos as $todo)
     <table class="table table-striped">
       <thead>
         <tr class="row">
@@ -22,15 +21,16 @@
         </tr>
       </thead>
       <tbody>
+        @foreach ($todos as $todo)
           <tr class="row">
             <td class="col-xs-2">{{ $todo->reporting_time->format('m/d (D)') }}</td>
             <td class="col-xs-3">{{ $todo->title }}</td>
-            <td class="col-xs-5">{{ $todo->content }}</td>
+            <td class="col-xs-5">{{ $todo->contents }}</td>
             <td class="col-xs-2"><a class="btn" href=""><i class="fa fa-book"></i></a></td>
           </tr>
+        @endforeach
       </tbody>
     </table>
-  @endforeach
   </div>
 </div>
 

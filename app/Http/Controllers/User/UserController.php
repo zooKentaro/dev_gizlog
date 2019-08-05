@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 // use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Todo;
 
@@ -34,6 +35,15 @@ class UserController extends Controller
     public function create()
     {
         return view('user.daily_report.create');
+    }
+
+    public function store(Request $request)
+    {
+        $input = $request->all();
+        $input['user_id'] = Auth::id();
+        // dd($input);
+        $this->todo->fill($input)->save();
+        return redirect()->to('home');
     }
 }
 

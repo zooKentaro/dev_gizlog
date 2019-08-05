@@ -41,14 +41,13 @@ class UserController extends Controller
     {
         $input = $request->all();
         $input['user_id'] = Auth::id();
-        // dd($input);
         $this->todo->fill($input)->save();
         return redirect()->to('home');
     }
 
     public function show($id)
     {
-        $this->todo->find($id);
+        $todo = $this->todo->find($id);
         return view('user.daily_report.show', compact('todo'));
     }
 }

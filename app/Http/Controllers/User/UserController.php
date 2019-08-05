@@ -45,5 +45,11 @@ class UserController extends Controller
         $this->todo->fill($input)->save();
         return redirect()->to('home');
     }
+
+    public function show($id)
+    {
+        $this->todo->find($id);
+        return view('user.daily_report.show', compact('todo'));
+    }
 }
 

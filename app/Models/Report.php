@@ -14,11 +14,12 @@ class Report extends Model
         'title',
         'user_id',
         'contents',
-        'reporting_time'
+        'reporting_time',
+        'deleted_at'
     ];
 
     public function getByUserId($id)
     {
-        return $this->where('user_id', $id)->get();
+        return $this->where('user_id', $id)->where('deleted_at','NULL')->get();
     }
 }

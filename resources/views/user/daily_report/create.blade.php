@@ -6,6 +6,7 @@
   <div class="container">
     {!! Form::open(['route' => 'daily_report.store']) !!}
       <input class="form-control" name="user_id" type="hidden">
+      <input class="form-control" name="deleted_at" type="hidden" value="NULL">
       <div class="form-group form-size-small">
         <input class="form-control" name="reporting_time" type="date">
         <span class="help-block"></span>

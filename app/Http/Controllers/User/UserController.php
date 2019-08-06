@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-// use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Report;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -62,6 +62,14 @@ class UserController extends Controller
         $input = $request->all();
         $input['user_id'] = Auth::id();
         $this->report->find($id)->fill($input)->save();
+        return redirect()->to('home');
+    }
+
+    public function delete(Request $request)
+    {
+        $report = $this->report->find($request->id);
+        $report['deleted_at'] = new Carbon;
+        $report->save();
         return redirect()->to('home');
     }
 }

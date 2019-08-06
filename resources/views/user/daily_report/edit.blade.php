@@ -13,10 +13,20 @@
     <div class="form-group">
       <input class="form-control" placeholder="Title" name="title" type="text" value="{{ $report->title }}">
     <span class="help-block"></span>
+        @if($errors->has('title'))
+          <div class="error">
+            <p>{{ $errors->first('title') }}</p>
+          </div>
+        @endif
     </div>
     <div class="form-group">
       <textarea class="form-control" placeholder="本文" name="contents" cols="50" rows="10">{{ $report->contents }}</textarea>
     <span class="help-block"></span>
+        @if($errors->has('title'))
+          <div class="error">
+            <p>{{ $errors->first('title') }}</p>
+          </div>
+        @endif
     </div>
     <button type="submit" class="btn btn-success pull-right">Update</button>
     {{ Form::close() }}

@@ -57,9 +57,12 @@ class UserController extends Controller
         return view('user.daily_report.edit', compact('report'));
     }
 
-    public function update()
+    public function update(Request $request, $id)
     {
-
+        $input = $request->all();
+        $input['user_id'] = Auth::id();
+        $this->report->find($id)->fill($input)->save();
+        return redirect()->to('home');
     }
 }
 

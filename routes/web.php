@@ -34,7 +34,7 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
     Route::post('store', 'UserController@store')->name('daily_report.store');
     Route::get('user/daily_report/{id}/show', 'UserController@show')->name('daily_report.show');
     Route::get('user/daily_report/{id}/edit', 'UserController@edit')->name('daily_report.edit');
-    Route::get('user/daily_report/{id}/put', 'UserController@update')->name('daily_report.update');
+    Route::put('user/daily_report/{id}/put', 'UserController@update')->name('daily_report.update');
 
     Route::get('attendance', ['as' => 'attendance.index', 'uses' => 'AttendanceController@index']);
     Route::post('attendance/register', ['as' => 'attendance.register.start', 'uses' => 'AttendanceController@setStartTime']);

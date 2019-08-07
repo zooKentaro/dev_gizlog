@@ -14,8 +14,8 @@
       <input class="form-control" placeholder="Title" name="title" type="text" value="{{ $report->title }}">
     <span class="help-block"></span>
         @if($errors->has('title'))
-          <div class="error">
-            <p>{{ $errors->first('title') }}</p>
+          <div>
+            <p style="color: red">{{ $errors->first('title') }}</p>
           </div>
         @endif
     </div>
@@ -23,8 +23,8 @@
       <textarea class="form-control" placeholder="本文" name="contents" cols="50" rows="10">{{ $report->contents }}</textarea>
     <span class="help-block"></span>
         @if($errors->has('title'))
-          <div class="error">
-            <p>{{ $errors->first('title') }}</p>
+          <div>
+            <p style="color: red">{{ $errors->first('title') }}</p>
           </div>
         @endif
     </div>

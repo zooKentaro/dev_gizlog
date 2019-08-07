@@ -26,10 +26,16 @@ class UserController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
         $userId = Auth::id();
-        $reports = $this->report->getByUserId($userId);
+        $reporting_time = $request->input('search-month');
+        if ($reporting_time !== NULL) {
+            $reports = $this->report->where('reporting_time', 'like', "%$reporting_time%")->where('deleted_at','NULL')->get();
+        } else {
+            $reports = $this->report->getByUserId($userId);
+        }
+
         return view('user.daily_report.index', compact('reports'));
     }
 
@@ -75,11 +81,18 @@ class UserController extends Controller
             'title.required' => '入力必須項目です。',
             'contents.required' => '入力必須項目です。'
         ]);
-        
+
         $input = $request->all();
         $input['user_id'] = Auth::id();
         $this->report->find($id)->fill($input)->save();
         return redirect()->to('home');
+    }
+
+    public function search(Request $request)
+    {
+        $reporting_time = $request['reporting_time'];
+        $reports = $this->report->where('reporting_time', $reporting_time)->get();
+        return view('user.daily_report.index', compact('reports'));
     }
 
     public function delete(Request $request)

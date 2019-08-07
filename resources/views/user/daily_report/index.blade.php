@@ -5,9 +5,11 @@
 <div class="main-wrap">
   <div class="btn-wrapper daily-report">
     <form>
+      {{-- {!! Form::open(['route' => 'daily_report.search']) !!} --}}
       <input class="form-control" name="search-month" type="month">
       <button type="submit" class="btn btn-icon"><i class="fa fa-search"></i></button>
     </form>
+    {{-- {!! Form::close() !!} --}}
     <a class="btn btn-icon" href="user/daily_report/create"><i class="fa fa-plus"></i></a>
   </div>
   <div class="content-wrapper table-responsive">

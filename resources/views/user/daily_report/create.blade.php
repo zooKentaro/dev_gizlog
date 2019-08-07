@@ -13,19 +13,19 @@
       </div>
       <div class="form-group">
         <input class="form-control" placeholder="Title" name="title" type="text">
+        <span class="help-block"></span>
         @if($errors->has('title'))
-          <div class="error">
-            <p>{{ $errors->first('title') }}</p>
+          <div>
+            <p style="color: red">{{ $errors->first('title') }}</p>
           </div>
         @endif
-        <span class="help-block"></span>
       </div>
       <div class="form-group">
         <textarea class="form-control" placeholder="Content" name="contents" cols="50" rows="10"></textarea>
         <span class="help-block"></span>
         @if($errors->has('contents'))
-          <div class="error">
-            <p>{{ $errors->first('contents') }}</p>
+          <div>
+            <p style="color: red">{{ $errors->first('contents') }}</p>
           </div>
         @endif
       </div>

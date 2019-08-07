@@ -11,23 +11,13 @@
         <input class="form-control" name="reporting_time" type="date">
         <span class="help-block"></span>
       </div>
-      <div class="form-group">
+      <div class="form-group @if (!empty($errors->first('title'))) has-error @endif">
         <input class="form-control" placeholder="Title" name="title" type="text">
-        <span class="help-block"></span>
-        @if($errors->has('title'))
-          <div>
-            <p>{{ $errors->first('title') }}</p>
-          </div>
-        @endif
+        <span class="help-block">{{ $errors->first('title') }}</span>
       </div>
-      <div class="form-group">
+      <div class="form-group @if (!empty($errors->first('contents'))) has-error @endif">
         <textarea class="form-control" placeholder="Content" name="contents" cols="50" rows="10"></textarea>
-        <span class="help-block"></span>
-        @if($errors->has('contents'))
-          <div>
-            <p>{{ $errors->first('contents') }}</p>
-          </div>
-        @endif
+        <span class="help-block">{{ $errors->first('contents') }}</span>
       </div>
       <button type="submit" class="btn btn-success pull-right">Add</button>
     {!! Form::close() !!}

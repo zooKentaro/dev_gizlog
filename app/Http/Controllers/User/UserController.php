@@ -88,13 +88,6 @@ class UserController extends Controller
         return redirect()->to('home');
     }
 
-    public function search(Request $request)
-    {
-        $reporting_time = $request['reporting_time'];
-        $reports = $this->report->where('reporting_time', $reporting_time)->get();
-        return view('user.daily_report.index', compact('reports'));
-    }
-
     public function delete(Request $request)
     {
         $report = $this->report->find($request->id);

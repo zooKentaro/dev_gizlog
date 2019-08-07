@@ -16,7 +16,7 @@
         <span class="help-block"></span>
         @if($errors->has('title'))
           <div>
-            <p style="color: red">{{ $errors->first('title') }}</p>
+            <p>{{ $errors->first('title') }}</p>
           </div>
         @endif
       </div>
@@ -25,7 +25,7 @@
         <span class="help-block"></span>
         @if($errors->has('contents'))
           <div>
-            <p style="color: red">{{ $errors->first('contents') }}</p>
+            <p>{{ $errors->first('contents') }}</p>
           </div>
         @endif
       </div>

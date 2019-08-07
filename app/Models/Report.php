@@ -20,6 +20,6 @@ class Report extends Model
 
     public function getByUserId($id)
     {
-        return $this->where('user_id', $id)->where('deleted_at','NULL')->get();
+        return $this->where('user_id', $id)->where('deleted_at', 'NULL')->get();
     }
 }

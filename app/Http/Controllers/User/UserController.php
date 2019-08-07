@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Report;
 use Carbon\Carbon;
-// use App\Http\Requests\User\DailyReportRequest;
 
 class UserController extends Controller
 {
@@ -31,7 +30,7 @@ class UserController extends Controller
         $userId = Auth::id();
         $reporting_time = $request->input('search-month');
         if ($reporting_time !== NULL) {
-            $reports = $this->report->where('reporting_time', 'like', "%$reporting_time%")->where('deleted_at','NULL')->get();
+            $reports = $this->report->where('reporting_time', 'like', "%$reporting_time%")->where('deleted_at', 'NULL')->get();
         } else {
             $reports = $this->report->getByUserId($userId);
         }
@@ -46,10 +45,10 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'title' => 'required|max:200',
             'contents' => 'required|max:200',
-        ],[
+        ], [
             'title.required' => '入力必須項目です。',
             'contents.required' => '入力必須項目です。'
         ]);
@@ -74,10 +73,10 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'title' => 'required|max:200',
             'contents' => 'required|max:200',
-        ],[
+        ], [
             'title.required' => '入力必須項目です。',
             'contents.required' => '入力必須項目です。'
         ]);
@@ -96,4 +95,3 @@ class UserController extends Controller
         return redirect()->to('home');
     }
 }
-

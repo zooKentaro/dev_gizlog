@@ -12,7 +12,7 @@
         <tbody>
           <tr>
             <th class="table-column">Title</th>
-            <td class="td-text">{{ $report->title}}</td>
+            <td class="td-text">{{ $report->title }}</td>
           </tr>
           <tr>
             <th class="table-column">Content</th>

@@ -19,7 +19,7 @@ class ReportsTableSeeder extends Seeder
             'updated_at' => Carbon::create(2018, 1, 4),
             'user_id' => 4,
             'contents'=> 'text',
-            'reporting_time'=> date('Y-m-d H-i-s'),
+            'reporting_time'=> Carbon::create(2018, 1, 1, 1, 1, 1),
             'deleted_at'=> 'NULL',
           ]
         ]);

@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\User;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\User\DailyReportRequest;
 use App\Models\Report;
 use Carbon\Carbon;
 
 class ReportController extends Controller
 {
-    public $report;
+    protected $report;
 
     public function __construct(Report $report)
     {
@@ -51,16 +52,8 @@ class ReportController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DailyReportRequest $reoirtRequest)
     {
-        $this->validate($request, [
-            'title' => 'required|max:200',
-            'contents' => 'required|max:200',
-        ], [
-            'title.required' => '入力必須項目です。',
-            'contents.required' => '入力必須項目です。'
-        ]);
-
         $input = $request->all();
         $input['user_id'] = Auth::id();
         $this->report->fill($input)->save();
@@ -98,15 +91,17 @@ class ReportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DailyReportRequest $reoirtRequest, $id)
     {
-        $this->validate($request, [
+/*        $this->validate($request, [
+            'reporting_time' => 'required',
             'title' => 'required|max:200',
-            'contents' => 'required|max:200',
+            'contents' => 'required|max:1000',
         ], [
+            'reporting_time.required' => '入力必須項目です。',
             'title.required' => '入力必須項目です。',
             'contents.required' => '入力必須項目です。'
-        ]);
+        ]);*/
 
         $input = $request->all();
         $input['user_id'] = Auth::id();
@@ -124,8 +119,8 @@ class ReportController extends Controller
     // public function destroy(Request $request)
     {
         $report = $this->report->find($id);
-        $report['deleted_at'] = new Carbon;
+        $report['deleted_at'] = now();
         $report->save();
-        return redirect()->to('home');
+        return redirect()->to('report');
     }
 }

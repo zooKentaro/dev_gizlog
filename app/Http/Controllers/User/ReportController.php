@@ -93,16 +93,6 @@ class ReportController extends Controller
      */
     public function update(DailyReportRequest $reoirtRequest, $id)
     {
-/*        $this->validate($request, [
-            'reporting_time' => 'required',
-            'title' => 'required|max:200',
-            'contents' => 'required|max:1000',
-        ], [
-            'reporting_time.required' => '入力必須項目です。',
-            'title.required' => '入力必須項目です。',
-            'contents.required' => '入力必須項目です。'
-        ]);*/
-
         $input = $request->all();
         $input['user_id'] = Auth::id();
         $this->report->find($id)->fill($input)->save();

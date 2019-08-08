@@ -19,6 +19,7 @@ class UserController extends Controller
         $this->middleware('auth');
         $this->users = $users;
     }
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -29,3 +30,4 @@ class UserController extends Controller
         return view('user.home.index', compact('userInfos'));
     }
 }
+

@@ -28,7 +28,8 @@ class ReportController extends Controller
         $userId = Auth::id();
         $reporting_time = $request->input('search-month');
         if ($reporting_time !== NULL) {
-            $reports = $this->report->where('reporting_time', 'like', "%$reporting_time%")->where('deleted_at', 'NULL')->get();
+            $dt = Carbon::parse($reporting_time);
+            $reports = $this->report->whereYear('reporting_time', $dt->year)->whereMonth('reporting_time', $dt->month)->where('deleted_at', 'NULL')->get();
         } else {
             $reports = $this->report->getByUserId($userId);
         }
@@ -54,7 +55,7 @@ class ReportController extends Controller
      */
     public function store(DailyReportRequest $reoirtRequest)
     {
-        $input = $request->all();
+        $input = $reoirtRequest->all();
         $input['user_id'] = Auth::id();
         $this->report->fill($input)->save();
         return redirect()->to('report');
@@ -93,7 +94,7 @@ class ReportController extends Controller
      */
     public function update(DailyReportRequest $reoirtRequest, $id)
     {
-        $input = $request->all();
+        $input = $reoirtRequest->all();
         $input['user_id'] = Auth::id();
         $this->report->find($id)->fill($input)->save();
         return redirect()->to('report');

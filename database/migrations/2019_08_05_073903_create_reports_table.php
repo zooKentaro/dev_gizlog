@@ -20,7 +20,7 @@ class CreateReportsTable extends Migration
             $table->string('contents');
             $table->datetime('reporting_time');
             $table->timestamps();
-            $table->string('deleted_at');
+            $table->softDeletes();
         });
     }
 

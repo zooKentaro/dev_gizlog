@@ -30,7 +30,6 @@ class ReportController extends Controller
         $reporting_time = $request->input('search-month');
         if ($reporting_time === NULL) {
             $reports = $this->report->getByUserId($userId);
-
             $reports = $reports->sortByDesc('reporting_time');
         } else {
             $dt = Carbon::parse($reporting_time);
@@ -62,7 +61,7 @@ class ReportController extends Controller
         $input = $reportRequest->all();
         $input['user_id'] = Auth::id();
         $this->report->fill($input)->save();
-        return redirect()->to('report');
+        return redirect()->route('report');
     }
 
     /**
@@ -113,8 +112,7 @@ class ReportController extends Controller
     public function destroy($id)
     {
         $report = $this->report->find($id);
-        $report['deleted_at'] = now();
-        $report->save();
+        $report->delete();
         return redirect()->to('report');
     }
 }

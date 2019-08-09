@@ -6,7 +6,6 @@
   <div class="container">
     {!! Form::open(['route' => 'daily_report.store']) !!}
       <input class="form-control" name="user_id" type="hidden">
-      <input class="form-control" name="deleted_at" type="hidden" value="NULL">
       <div class="form-group form-size-small @if (!empty($errors->first('reporting_time'))) has-error @endif">
         <input class="form-control" name="reporting_time" type="date">
         <span class="help-block">{{ $errors->first('reporting_time') }}</span>

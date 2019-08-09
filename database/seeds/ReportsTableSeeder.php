@@ -20,8 +20,7 @@ class ReportsTableSeeder extends Seeder
             'user_id' => 4,
             'contents'=> 'text',
             'reporting_time'=> Carbon::create(2018, 1, 1, 1, 1, 1),
-            'deleted_at'=> 'NULL',
-          ]
+            ]
         ]);
     }
 }

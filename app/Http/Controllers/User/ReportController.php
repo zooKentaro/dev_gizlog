@@ -57,9 +57,9 @@ class ReportController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(DailyReportRequest $reoirtRequest)
+    public function store(DailyReportRequest $reportRequest)
     {
-        $input = $reoirtRequest->all();
+        $input = $reportRequest->all();
         $input['user_id'] = Auth::id();
         $this->report->fill($input)->save();
         return redirect()->to('report');
@@ -96,9 +96,9 @@ class ReportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(DailyReportRequest $reoirtRequest, $id)
+    public function update(DailyReportRequest $reportRequest, $id)
     {
-        $input = $reoirtRequest->all();
+        $input = $reportRequest->all();
         $input['user_id'] = Auth::id();
         $this->report->find($id)->fill($input)->save();
         return redirect()->to('report');

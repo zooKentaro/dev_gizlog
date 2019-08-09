@@ -18,6 +18,7 @@ class ReportController extends Controller
         $this->middleware('auth');
         $this->report = $report;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -27,11 +28,14 @@ class ReportController extends Controller
     {
         $userId = Auth::id();
         $reporting_time = $request->input('search-month');
-        if ($reporting_time !== NULL) {
-            $dt = Carbon::parse($reporting_time);
-            $reports = $this->report->whereYear('reporting_time', $dt->year)->whereMonth('reporting_time', $dt->month)->where('deleted_at', 'NULL')->get();
-        } else {
+        if ($reporting_time === NULL) {
             $reports = $this->report->getByUserId($userId);
+
+            $reports = $reports->sortByDesc('reporting_time');
+        } else {
+            $dt = Carbon::parse($reporting_time);
+            $reports = $this->report->getSearchReports($dt);
+            $reports = $reports->sortByDesc('reporting_time');
         }
 
         return view('user.daily_report.index', compact('reports'));
@@ -107,7 +111,6 @@ class ReportController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    // public function destroy(Request $request)
     {
         $report = $this->report->find($id);
         $report['deleted_at'] = now();

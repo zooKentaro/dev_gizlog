@@ -17,7 +17,7 @@ class CreateReportsTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->string('title');
-            $table->string('contents');
+            $table->text('contents', 3000);
             $table->datetime('reporting_time');
             $table->timestamps();
             $table->softDeletes();

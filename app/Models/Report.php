@@ -18,7 +18,6 @@ class Report extends Model
         'user_id',
         'contents',
         'reporting_time',
-        'deleted_at'
     ];
 
     public function getByUserId($id)

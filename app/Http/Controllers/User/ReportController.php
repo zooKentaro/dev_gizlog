@@ -100,7 +100,7 @@ class ReportController extends Controller
         $input = $reportRequest->all();
         $input['user_id'] = Auth::id();
         $this->report->find($id)->fill($input)->save();
-        return redirect()->to('report');
+        return redirect()->route('report');
     }
 
     /**
@@ -113,6 +113,6 @@ class ReportController extends Controller
     {
         $report = $this->report->find($id);
         $report->delete();
-        return redirect()->to('report');
+        return redirect()->route('report');
     }
 }

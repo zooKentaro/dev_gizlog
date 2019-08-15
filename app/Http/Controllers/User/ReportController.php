@@ -28,7 +28,7 @@ class ReportController extends Controller
     {
         $userId = Auth::id();
         $reporting_time = $request->input('search-month');
-        if ($reporting_time === NULL) {
+        if (is_null($reporting_time) || empty($reporting_time)) {
             $reports = $this->report->getByUserId($userId);
             $reports = $reports->sortByDesc('reporting_time');
         } else {

@@ -33,7 +33,7 @@ class ReportController extends Controller
             $reports = $reports->sortByDesc('reporting_time');
         } else {
             $dt = Carbon::parse($reporting_time);
-            $reports = $this->report->getSearchReports($dt);
+            $reports = $this->report->getSearchReports($dt, $userId);
             $reports = $reports->sortByDesc('reporting_time');
         }
 

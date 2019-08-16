@@ -6,14 +6,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\DailyReportRequest;
-use App\Models\Report;
+use App\Models\DailyReport;
 use Carbon\Carbon;
 
 class ReportController extends Controller
 {
     protected $report;
 
-    public function __construct(Report $report)
+    public function __construct(DailyReport $report)
     {
         $this->middleware('auth');
         $this->report = $report;

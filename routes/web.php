@@ -32,12 +32,8 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
     Route::get('home', 'UserController@index')->name('home');
 
     Route::get('report', 'ReportController@index')->name('report');
-    Route::get('user/daily_report/create', 'ReportController@create')->name('daily_report.cerate');
-    Route::post('store', 'ReportController@store')->name('daily_report.store');
-    Route::get('user/daily_report/{id}/show', 'ReportController@show')->name('daily_report.show');
-    Route::get('user/daily_report/{id}/edit', 'ReportController@edit')->name('daily_report.edit');
-    Route::put('user/daily_report/{id}', 'ReportController@update')->name('daily_report.update');
-    Route::delete('user/daily_report/{id}', 'ReportController@destroy')->name('daily_report.destroy');
+
+    Route::resource('user/daily_report', 'ReportController');
 
     Route::get('attendance', ['as' => 'attendance.index', 'uses' => 'AttendanceController@index']);
     Route::post('attendance/register', ['as' => 'attendance.register.start', 'uses' => 'AttendanceController@setStartTime']);

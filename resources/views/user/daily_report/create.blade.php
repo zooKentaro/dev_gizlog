@@ -14,7 +14,7 @@
         <span class="help-block">{{ $errors->first('title') }}</span>
       </div>
       <div class="form-group @if (!empty($errors->first('contents'))) has-error @endif">
-        <textarea class="form-control" placeholder="Content" name="contents" cols="50" rows="10"></textarea>
+        {!! Form::textarea('contents', null, ['class' => 'form-control', 'placeholder' => 'Content']) !!}
         <span class="help-block">{{ $errors->first('contents') }}</span>
       </div>
       <button type="submit" class="btn btn-success pull-right">Add</button>

@@ -22,7 +22,9 @@ class DailyReport extends Model
 
     public function getByUserId($id)
     {
-        return $this->where('user_id', $id)->get();
+        return $this->where('user_id', $id)
+                    ->orderBy('reporting_time', 'desc')
+                    ->get();
     }
 
     public function getSearchReports($dt, $id)
@@ -30,6 +32,7 @@ class DailyReport extends Model
         return $this->whereYear('reporting_time', $dt->year)
                     ->whereMonth('reporting_time', $dt->month)
                     ->where('user_id', $id)
+                    ->orderBy('reporting_time', 'desc')
                     ->get();
     }
 }

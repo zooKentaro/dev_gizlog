@@ -30,11 +30,9 @@ class ReportController extends Controller
         $reporting_time = $request->input('search-month');
         if (is_null($reporting_time) || empty($reporting_time)) {
             $reports = $this->report->getByUserId($userId);
-            $reports = $reports->sortByDesc('reporting_time');
         } else {
             $dt = Carbon::parse($reporting_time);
             $reports = $this->report->getSearchReports($dt, $userId);
-            $reports = $reports->sortByDesc('reporting_time');
         }
 
         return view('user.daily_report.index', compact('reports'));

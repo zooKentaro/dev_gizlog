@@ -31,8 +31,6 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
 
     Route::get('home', 'UserController@index')->name('home');
 
-    Route::get('report', 'ReportController@index')->name('report');
-
     Route::resource('user/daily_report', 'ReportController');
 
     Route::get('attendance', ['as' => 'attendance.index', 'uses' => 'AttendanceController@index']);

@@ -31,8 +31,8 @@ class ReportController extends Controller
         if (empty($reporting_time)) {
             $reports = $this->report->getByUserId($userId);
         } else {
-            $dt = Carbon::parse($reporting_time);
-            $reports = $this->report->getSearchReports($dt, $userId);
+            $dateTime = Carbon::parse($reporting_time);
+            $reports = $this->report->getSearchReports($dateTime, $userId);
         }
 
         return view('user.daily_report.index', compact('reports'));

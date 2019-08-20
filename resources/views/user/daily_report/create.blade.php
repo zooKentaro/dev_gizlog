@@ -6,8 +6,8 @@
   <div class="container">
     {!! Form::open(['route' => 'daily_report.store']) !!}
       <div class="form-group form-size-small @if (!empty($errors->first('reporting_time'))) has-error @endif">
-      {!! Form::input('date', 'reporting_time', null, ['class' => 'form-control']) !!}
-      <span class="help-block">{{ $errors->first('reporting_time') }}</span>
+        {!! Form::input('date', 'reporting_time', null, ['class' => 'form-control']) !!}
+        <span class="help-block">{{ $errors->first('reporting_time') }}</span>
       </div>
       <div class="form-group @if (!empty($errors->first('title'))) has-error @endif">
         {!! Form::input('text', 'title', null, ['class' => 'form-control', 'placeholder' => 'Title']) !!}

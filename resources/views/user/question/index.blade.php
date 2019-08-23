@@ -16,7 +16,10 @@
     </div>
     <div class="category-wrap">
       <div class="btn all" id="0">all</div>
-      <div class="btn" id=""></div>
+      <div class="btn front" id="1">front</div>
+      <div class="btn back" id="2">back</div>
+      <div class="btn infra" id="3">infra</div>
+      <div class="btn others" id="4">others</div>
       <input id="category-val" name="tag_category_id" type="hidden" value="">
     </div>
   </form>
@@ -31,11 +34,12 @@
           <th class="col-xs-2"></th>
         </tr>
       </thead>
+      @foreach ($questions as $question)
       <tbody>
         <tr class="row">
-          <td class="col-xs-1"><img src="" class="avatar-img"></td>
-          <td class="col-xs-2"></td>
-          <td class="col-xs-6"></td>
+          <td class="col-xs-1"><img src="{{ $question->avatar }}" class="avatar-img"></td>
+          <td class="col-xs-2">{{ $question->name }}</td>
+          <td class="col-xs-6">{{ $question->title }}</td>
           <td class="col-xs-1"><span class="point-color"></span></td>
           <td class="col-xs-2">
             <a class="btn btn-success" href="">
@@ -44,6 +48,7 @@
           </td>
         </tr>
       </tbody>
+      @endforeach
     </table>
     <div aria-label="Page navigation example" class="text-center"></div>
   </div>

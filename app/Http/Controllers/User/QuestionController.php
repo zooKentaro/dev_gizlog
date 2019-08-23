@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Question;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\User\QuestionsRequest;
+
 
 class QuestionController extends Controller
 {
@@ -40,7 +42,7 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.question.create');
     }
 
     /**
@@ -49,9 +51,11 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(QuestionsRequest $request)
     {
-        //
+        $inputs = $request->all();
+        $this->question->create($inputs);
+        return redirect()->route('question.index');
     }
 
     /**

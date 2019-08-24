@@ -15,15 +15,17 @@ class Question extends Model
 
     public function fetchAllQusestions($userId)
     {
-        return $this->where('user_id', $userId)
-                    ->join('users', 'user_id', '=', 'users.id')
-                    ->join('tag_categories', 'tag_category_id', '=', 'tag_categories.id')
-                    ->get();
+        return $this->where('user_id', $userId)->get();
     }
 
-    public function fetchSearchQuestions($userId, $searchWord)
+    public function user()
     {
+        return $this->belongsTo('App\Models\User');
+    }
 
+    public function tagCategory()
+    {
+        return $this->belongsTo('App\Models\TagCategory');
     }
 }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Models\Question;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\User\QuestionsRequest;
@@ -25,10 +26,10 @@ class QuestionController extends Controller
      */
     public function index(Request $request)
     {
-        $userId = Auth::id();
+        $user = Auth::user();
         $searchWord = $request->input('search_word');
         if(empty($searchWord)) {
-            $questions = $this->question->fetchAllQusestions($userId);
+            $questions = $user->questions;
         } else {
             $questions = $this->question->fetchSearchQuestions($userId,$searchWord);
         }
@@ -66,7 +67,10 @@ class QuestionController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = Auth::user();
+        $question = $user->questions->find($id);
+        // $question = $this->question->find($id);
+        return view('user.question.show', compact('question'));
     }
 
     /**

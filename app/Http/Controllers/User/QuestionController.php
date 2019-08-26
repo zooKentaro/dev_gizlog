@@ -3,21 +3,25 @@
 namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Question;
+use App\Models\Comment;
 use App\Models\User;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\User\QuestionsRequest;
+use App\Http\Requests\User\CommentRequest;
 
 
 class QuestionController extends Controller
 {
     protected $question;
+    protected $comment;
 
-    public function __construct(Question $question)
+    public function __construct(Question $question, Comment $comment)
     {
         $this->middleware('auth');
         $this->question = $question;
+        $this->comment = $comment;
     }
     /**
      * Display a listing of the resource.
@@ -69,8 +73,9 @@ class QuestionController extends Controller
     {
         $user = Auth::user();
         $question = $user->questions->find($id);
-        // $question = $this->question->find($id);
-        return view('user.question.show', compact('question'));
+        $comments = $this->comment->getComment($id);
+
+        return view('user.question.show', compact('question', 'comments'));
     }
 
     /**
@@ -105,5 +110,15 @@ class QuestionController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function storeComment(CommentRequest $request)
+    {
+        $inputs = $request->all();
+        $this->comment->fill($inputs)->save();
+
+        $question_id = $inputs['question_id'];
+
+        return redirect()->route('question.show', $question_id);
     }
 }

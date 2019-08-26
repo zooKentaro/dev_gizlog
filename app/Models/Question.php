@@ -27,5 +27,10 @@ class Question extends Model
     {
         return $this->belongsTo('App\Models\TagCategory');
     }
+
+    public function comment()
+    {
+        return $this->belongsTo('App\Models\Comment');
+    }
 }
 

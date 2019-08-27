@@ -18,7 +18,7 @@
           </tr>
           <tr>
             <th class="table-column">Question</th>
-            <td class='td-text'>{{ $question->content }}</td>
+            <td class='td-text'>{!! nl2br($question->content) !!}</td>
           </tr>
         </tbody>
       </table>
@@ -44,9 +44,9 @@
       <div class="comment-title">
         <img src="{{ $question->user->avatar }}" class="avatar-img"><p>コメントを投稿する</p>
       </div>
-      <div class="comment-body">
+      <div class="comment-body　@if(!empty($errors->first('comment'))) has-error @endif">
         {{ Form::textarea('comment', null,['class' => 'form-control', 'placeholder' => 'Add your comment...']) }}
-        <span class="help-block"></span>
+        <span class="help-block">{{ $errors->first('comment') }}</span>
       </div>
       <div class="comment-bottom">
         <button type="submit" class="btn btn-success">

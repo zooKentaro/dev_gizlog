@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Question;
 use App\Models\Comment;
 use App\Models\User;
+use App\Models\TagCategory;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\QuestionsRequest;
 use App\Http\Requests\User\CommentRequest;
@@ -17,11 +18,12 @@ class QuestionController extends Controller
     protected $question;
     protected $comment;
 
-    public function __construct(Question $question, Comment $comment)
+    public function __construct(Question $question, Comment $comment, TagCategory $taguCategory)
     {
         $this->middleware('auth');
         $this->question = $question;
         $this->comment = $comment;
+        $this->tagCategory = $taguCategory;
     }
     /**
      * Display a listing of the resource.
@@ -47,7 +49,8 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        return view('user.question.create');
+        $tagCategorys = $this->tagCategory->get();
+        return view('user.question.create', compact('tagCategorys'));
     }
 
     /**
@@ -86,7 +89,11 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = Auth::user();
+        $question = $user->questions->find($id);
+        $tagCategorys = $this->tagCategory->get();
+
+        return view('user.question.edit', compact('question', 'tagCategorys'));
     }
 
     /**
@@ -116,9 +123,14 @@ class QuestionController extends Controller
     {
         $inputs = $request->all();
         $this->comment->fill($inputs)->save();
-
         $question_id = $inputs['question_id'];
 
         return redirect()->route('question.show', $question_id);
+    }
+
+    public function myPage()
+    {
+        $questions = $this->question->fetchAllQusestions(Auth::id());
+        return view('user.question.mypage', compact('questions'));
     }
 }

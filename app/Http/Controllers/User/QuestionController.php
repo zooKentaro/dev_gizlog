@@ -103,9 +103,12 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(QuestionsRequest $request, $id)
     {
-        //
+        $inputs = $request->all();
+        $this->question->find($id)->fill($inputs)->save();
+
+        return redirect()->route('question.index');
     }
 
     /**

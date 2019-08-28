@@ -33,11 +33,12 @@ class QuestionController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
-        $searchWord = $request->input('search_word');
-        if(empty($searchWord)) {
+        $searchConditions = $request->all();
+
+        if(empty($searchConditions)) {
             $questions = $user->questions;
         } else {
-            $questions = $this->question->fetchSearchQuestions($userId,$searchWord);
+            $questions = $this->question->fetchSearchQuestions($user->id,$searchConditions);
         }
         return view('user.question.index', compact('questions'));
     }

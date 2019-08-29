@@ -17,6 +17,7 @@ class QuestionController extends Controller
 {
     protected $question;
     protected $comment;
+    protected $tagCategory;
 
     public function __construct(Question $question, Comment $comment, TagCategory $taguCategory)
     {
@@ -36,9 +37,11 @@ class QuestionController extends Controller
         $searchConditions = $request->all();
 
         if(empty($searchConditions)) {
-            $questions = $user->questions;
+            $questions = $this->question->with(['user', 'tagCategory', 'comment'])->orderby('id', 'decs')->get();
+            // $questionComments = $question->with('comment')->count();
         } else {
             $questions = $this->question->fetchSearchQuestions($user->id,$searchConditions);
+            // $questionComments = $this->comment->with()->count()->get();
         }
         return view('user.question.index', compact('questions'));
     }
@@ -62,8 +65,10 @@ class QuestionController extends Controller
      */
     public function store(QuestionsRequest $request)
     {
+        $user = Auth::user();
         $inputs = $request->all();
         $this->question->create($inputs);
+
         return redirect()->route('question.index');
     }
 
@@ -121,7 +126,8 @@ class QuestionController extends Controller
     public function destroy($id)
     {
         $this->question->find($id)->delete();
-        return redirect()->route('question.index');
+        $questions = $this->question->with(['user', 'tagCategory', 'comment'])->get();
+        return view('user.question.mypage', compact('questions'));
     }
 
     public function storeComment(CommentRequest $request)
@@ -135,7 +141,16 @@ class QuestionController extends Controller
 
     public function myPage()
     {
-        $questions = $this->question->fetchAllQusestions(Auth::id());
+        $questions = $this->question->with(['user', 'tagCategory', 'comment'])->orderby('id', 'decs')->get();
         return view('user.question.mypage', compact('questions'));
+    }
+
+    public function confirm(Request $request)
+    {
+        $sendQuestion = $request->all();
+        // dd($sendQuestion);
+        $tagName = $this->tagCategory->find($sendQuestion['tag_category_id']);
+
+        return view('user.question.confirm', compact('sendQuestion', 'tagName'));
     }
 }

@@ -16,6 +16,12 @@ class Question extends Model
         'content',
     ];
 
+    public function fetchAllQusestions($id)
+    {
+        return $this->where('user_id', $id)->get();
+    }
+
+
     public function fetchSearchQuestions($userId, $searchConditions)
     {
         return $this->where('user_id', $userId)

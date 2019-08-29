@@ -5,8 +5,10 @@
 
 <div class="main-wrap">
   <div class="container">
-    {{ Form::open(['route' => ['question.update', $question->id], 'method' => 'PUT']) }}
+    {{ Form::open(['route' => ['question.confirm']]) }}
       <div class="form-group @if(!empty($errors->first('tag_category_id'))) has-error @endif">
+        {{ Form::input('hidden', 'id', $question->id, ['class' => 'form-control']) }}
+        {{ Form::input('hidden', 'user_id', Auth::id(), ['class' => 'form-control']) }}
         {{ Form::select('tag_category_id', $tagCategorys->pluck('name', 'id'), $question->tag_category_id, ['class' => 'form-control selectpicker form-size-small', 'id' => 'pref_id']) }}
         <span class="help-block">{{ $errors->first('tag_category_id') }}</span>
       </div>

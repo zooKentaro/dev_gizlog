@@ -5,9 +5,9 @@
 <div class="main-wrap">
   <div class="container">
     {{ Form::open(['route' => ['question.confirm']]) }}
-      {{ Form::input('hidden', 'user_id', Auth::id(), ['class' => 'form-control']) }}
-      {{ Form::input('hidden', 'id', null, ['class' => 'form-control']) }}
       <div class="form-group @if(!empty($errors->first('tag_category_id'))) has-error @endif">
+        {{ Form::input('hidden', 'user_id', Auth::id(), ['class' => 'form-control']) }}
+        {{ Form::input('hidden', 'id', null, ['class' => 'form-control']) }}
         {{ Form::select('tag_category_id', $tagCategorys->pluck('name', 'id'), null, ['class' => 'form-control selectpicker form-size-small', 'id' => 'pref_id', 'placeholder' => 'Select category']) }}
         <span class="help-block">{{ $errors->first('tag_category_id') }}</span>
       </div>

@@ -21,10 +21,10 @@ class Question extends Model
         return $this->where('user_id', $id)->get();
     }
 
-
     public function fetchSearchQuestions($userId, $searchConditions)
     {
-        return $this->where('user_id', $userId)
+        return $this->with(['user', 'tagCategory', 'comment'])
+                    ->where('user_id', $userId)
                     ->searchWord($searchConditions['search_word'])
                     ->searchTagCategory($searchConditions['tag_category_id'])
                     ->orderby('id', 'decs')

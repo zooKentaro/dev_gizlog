@@ -38,9 +38,9 @@
     </div>
   <div class="comment-box">
     {{ Form::open(['route' => ['question.storeComment']]) }}
-    {{ Form::input('hidden', 'user_id', Auth::id()) }}
-    {{ Form::input('hidden', 'question_id', $question->id) }}
-    {{ Form::input('hidden', 'question_user_id', $question->user->id) }}
+      {{ Form::input('hidden', 'user_id', Auth::id()) }}
+      {{ Form::input('hidden', 'question_id', $question->id) }}
+      {{ Form::input('hidden', 'question_user_id', $question->user->id) }}
       <div class="comment-title">
         <img src="{{ $question->user->avatar }}" class="avatar-img"><p>コメントを投稿する</p>
       </div>
@@ -49,9 +49,7 @@
         <span class="help-block">{{ $errors->first('comment') }}</span>
       </div>
       <div class="comment-bottom">
-        <button type="submit" class="btn btn-success">
-          <i class="fa fa-pencil" aria-hidden="true"></i>
-        </button>
+        {{ Form::button('<i class="fa fa-pencil" aria-hidden="true"></i>', ['type' => 'submit', 'class' => 'btn btn-success']) }}
       </div>
     {{ Form::close() }}
   </div>

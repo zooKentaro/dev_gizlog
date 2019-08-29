@@ -29,12 +29,13 @@
         {{ Form::open(['route' => 'question.store']) }}
       @endif
 
-      <input name="user_id" type="hidden" value="{{ $sendQuestion['user_id'] }}">
-      <input name="tag_category_id" type="hidden" value="{{ $sendQuestion['tag_category_id'] }}">
-      <input name="title" type="hidden" value="{{ $sendQuestion['title'] }}">
-      <input name="content" type="hidden" value="{{ $sendQuestion['content'] }}">
-      <button type="submit" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i></button>
-      {{ Form::close() }}
+      {{ Form::input('hidden', 'user_id', $sendQuestion['user_id']) }}
+      {{ Form::input('hidden', 'tag_category_id', $sendQuestion['tag_category_id']) }}
+      {{ Form::input('hidden', 'title', $sendQuestion['title']) }}
+      {{ Form::input('hidden', 'content', $sendQuestion['content']) }}
+      {{ Form::button('<i class="fa fa-check" aria-hidden="true"></i>', ['class' => 'btn btn-success', 'type' => 'submit']) }}
+      {{-- <button type="submit" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i></button> --}}
+    {{ Form::close() }}
   </div>
 </div>
 

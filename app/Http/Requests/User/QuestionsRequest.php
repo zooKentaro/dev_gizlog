@@ -27,7 +27,7 @@ class QuestionsRequest extends FormRequest
             'tag_category_id' => 'required|in:1,2,3,4',
             'title'           => 'required|max:30',
             'content'         => 'required|max:1000',
-            'search_wordr'    => 'max:100'
+            'search_word'    => 'max:50'
         ];
     }
 

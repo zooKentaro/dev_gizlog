@@ -24,10 +24,10 @@ class QuestionsRequest extends FormRequest
     public function rules()
     {
         return [
-            'tag_category_id' => 'required|in:1,2,3,4',
-            'title'           => 'required|max:30',
-            'content'         => 'required|max:1000',
-            'search_word'    => 'max:50'
+            'tag_category_id' => 'sometimes|required|in:1,2,3,4',
+            'title'           => 'sometimes|required|max:30',
+            'content'         => 'sometimes|required|max:1000',
+            'search_word'     => 'sometimes|max:50'
         ];
     }
 
@@ -40,7 +40,7 @@ class QuestionsRequest extends FormRequest
             'title.max'                 => '30文字以内で入力してください。',
             'content.required'          => '入力必須項目です。',
             'content.max'               => '1000文字以内で入力してください。',
-            'search_word'               => '検索文字は100文字以内にしてください。',
+            'search_word'               => '検索文字は50文字以内にしてください。',
         ];
     }
 }

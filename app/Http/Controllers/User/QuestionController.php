@@ -33,14 +33,11 @@ class QuestionController extends Controller
      */
     public function index(Request $request)
     {
-        $user = Auth::user();
         $searchConditions = $request->all();
 
-        if(empty($searchConditions)) {
-            $questions = $this->question->fetchAllQusestions($user->id);
-        } else {
-            $questions = $this->question->fetchSearchQuestions($user->id,$searchConditions);
-        }
+        $searchWord = $request->input('search_word');
+        $searchTag = $request->input('tag_category_id');
+        $questions = $this->question->fetchSearchQuestions($searchWord, $searchTag);
 
         return view('user.question.index', compact('questions'));
     }
@@ -65,7 +62,6 @@ class QuestionController extends Controller
      */
     public function store(QuestionsRequest $request)
     {
-        $user = Auth::user();
         $inputs = $request->all();
         $this->question->create($inputs);
 
@@ -139,9 +135,9 @@ class QuestionController extends Controller
         return redirect()->route('question.show', $question_id);
     }
 
-    public function myPage()
+    public function showMyPage()
     {
-        $questions = $this->question->with(['user', 'tagCategory', 'comment'])->orderby('id', 'decs')->get();
+        $questions = $this->question->with(['user', 'tagCategory', 'comment'])->orderby('id', 'desc')->get();
 
         return view('user.question.mypage', compact('questions'));
     }

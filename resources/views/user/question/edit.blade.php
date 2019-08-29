@@ -19,7 +19,7 @@
         {{ Form::textarea('content', $question->content, ['class' => 'form-control', 'placeholder' => 'Please write down your question here...']) }}
         <span class="help-block">{{ $errors->first('content') }}</span>
       </div>
-      {{ Form::input('submit', 'confirm', 'update', ['class' => 'btn btn-success pull-right']) }}
+      {{ Form::submit('update', ['class' => 'btn btn-success pull-right', 'name' => 'confirm']) }}
     {{ Form::close() }}
   </div>
 </div>

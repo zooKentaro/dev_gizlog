@@ -16,35 +16,26 @@ class Question extends Model
         'content',
     ];
 
-    public function fetchAllQusestions($id)
+    public function fetchSearchQuestions($searchWord, $searchTag)
     {
         return $this->with(['user', 'tagCategory', 'comment'])
-                    ->where('user_id', $id)
-                    ->orderby('id', 'decs')
-                    ->get();
-    }
-
-    public function fetchSearchQuestions($userId, $searchConditions)
-    {
-        return $this->with(['user', 'tagCategory', 'comment'])
-                    ->where('user_id', $userId)
-                    ->searchWord($searchConditions['search_word'])
-                    ->searchTagCategory($searchConditions['tag_category_id'])
-                    ->orderby('id', 'decs')
+                    ->searchWord($searchWord)
+                    ->searchTagCategory($searchTag)
+                    ->orderby('id', 'desc')
                     ->get();
     }
 
     public function scopeSearchTagCategory($query, $tagCategoryId)
     {
         if(!empty($tagCategoryId)) {
-            return $this->where('tag_category_id', $tagCategoryId);
+            return $query->where('tag_category_id', $tagCategoryId);
         }
     }
 
     public function scopeSearchWord($query, $searchWord)
     {
         if(!empty($searchWord)) {
-            return $this->where('title', 'LIKE', "%$searchWord%");
+            return $query->where('title', 'LIKE', "%$searchWord%");
         }
     }
 

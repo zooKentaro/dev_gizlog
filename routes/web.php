@@ -44,7 +44,7 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
 
     Route::resource('question', QuestionController::class);
     Route::post('comment', 'QuestionController@storeComment')->name('question.storeComment');
-    Route::get('mypage', 'QuestionController@myPage')->name('question.myPage');
+    Route::get('myPage', 'QuestionController@showMyPage')->name('question.showMyPage');
     Route::post('confirm', 'QuestionController@confirm')->name('question.confirm');
 
 });

@@ -3,14 +3,14 @@
 
 <h2 class="brand-header">質問一覧</h2>
 <div class="main-wrap">
-  <form id="categoryForm">
+  {{ Form::open(['route' => ['question.index'], 'id' => 'categoryForm', 'method' => 'GET']) }}
     <div class="btn-wrapper">
       <div class="search-box">
         {{ Form::input('text', 'search_word', null, ['class' => 'form-control search-form', 'placeholder' => 'Search words...']) }}
         {{ Form::button('<i class="fa fa-search" aria-hidden="true"></i>', ['type' => 'submit', 'class' => 'search-icon']) }}
       </div>
       <a class="btn" href="{{ route('question.create') }}"><i class="fa fa-plus" aria-hidden="true"></i></a>
-      <a class="btn" href="{{ route('question.myPage') }}">
+      <a class="btn" href="{{ route('question.showMyPage') }}">
         <i class="fa fa-user" aria-hidden="true"></i>
       </a>
     </div>
@@ -20,9 +20,9 @@
       <div class="btn back" id="2">back</div>
       <div class="btn infra" id="3">infra</div>
       <div class="btn others" id="4">others</div>
-      <input id="category-val" name="tag_category_id" type="hidden" value="">
+      {{ Form::input('hidden', 'tag_category_id', null, ['id' => 'category-val']) }}
     </div>
-  </form>
+  {{ Form::close() }}
   <div class="content-wrapper table-responsive">
     <table class="table table-striped">
       <thead>

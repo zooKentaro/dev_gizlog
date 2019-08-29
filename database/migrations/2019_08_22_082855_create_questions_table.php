@@ -14,11 +14,11 @@ class CreateQuestionsTable extends Migration
     public function up()
     {
         Schema::create('questions', function (Blueprint $table) {
-            $table->increments('id')->nullable(false);
-            $table->integer('user_id')->nullable(false);
-            $table->integer('tag_category_id');
-            $table->string('title')->nullable(false);
-            $table->text('content')->nullable(false);
+            $table->increments('id')->nullable();
+            $table->integer('user_id')->nullable();
+            $table->integer('tag_category_id')->nullable();
+            $table->string('title')->nullable();
+            $table->text('content')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

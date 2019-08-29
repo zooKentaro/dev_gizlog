@@ -37,7 +37,7 @@ class QuestionController extends Controller
         $searchConditions = $request->all();
 
         if(empty($searchConditions)) {
-            $questions = $this->question->with(['user', 'tagCategory', 'comment'])->orderby('id', 'decs')->get();
+            $questions = $this->question->fetchAllQusestions($user->id);
         } else {
             $questions = $this->question->fetchSearchQuestions($user->id,$searchConditions);
         }

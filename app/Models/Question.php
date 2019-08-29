@@ -18,7 +18,10 @@ class Question extends Model
 
     public function fetchAllQusestions($id)
     {
-        return $this->where('user_id', $id)->get();
+        return $this->with(['user', 'tagCategory', 'comment'])
+                    ->where('user_id', $id)
+                    ->orderby('id', 'decs')
+                    ->get();
     }
 
     public function fetchSearchQuestions($userId, $searchConditions)

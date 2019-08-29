@@ -23,18 +23,17 @@
     </div>
   </div>
   <div class="btn-bottom-wrapper">
-      @if(isset($sendQuestion['id']))
-        {{ Form::open(['route' => ['question.update', $sendQuestion['id']], 'method' => 'PUT']) }}
-      @else
-        {{ Form::open(['route' => 'question.store']) }}
-      @endif
+    @if(isset($sendQuestion['id']))
+      {{ Form::open(['route' => ['question.update', $sendQuestion['id']], 'method' => 'PUT']) }}
+    @else
+      {{ Form::open(['route' => 'question.store']) }}
+    @endif
 
       {{ Form::input('hidden', 'user_id', $sendQuestion['user_id']) }}
       {{ Form::input('hidden', 'tag_category_id', $sendQuestion['tag_category_id']) }}
       {{ Form::input('hidden', 'title', $sendQuestion['title']) }}
       {{ Form::input('hidden', 'content', $sendQuestion['content']) }}
       {{ Form::button('<i class="fa fa-check" aria-hidden="true"></i>', ['class' => 'btn btn-success', 'type' => 'submit']) }}
-      {{-- <button type="submit" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i></button> --}}
     {{ Form::close() }}
   </div>
 </div>

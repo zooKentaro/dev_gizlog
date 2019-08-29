@@ -31,9 +31,7 @@
           </td>
           <td class="col-xs-1">
             {{ Form::open(['route' => ['question.destroy', $question->id], 'method' => 'DELETE']) }}
-              <button class="btn btn-danger" type="submit">
-                <i class="fa fa-trash-o" aria-hidden="true"></i>
-              </button>
+              {{ Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i>', ['class' => 'btn btn-danger', 'type' => 'submit']) }}
             {{ Form::close() }}
           </td>
         </tr>

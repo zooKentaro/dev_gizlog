@@ -21,7 +21,6 @@ class QuestionController extends Controller
 
     public function __construct(Question $question, Comment $comment, TagCategory $taguCategory)
     {
-        $this->middleware('auth');
         $this->question = $question;
         $this->comment = $comment;
         $this->tagCategory = $taguCategory;

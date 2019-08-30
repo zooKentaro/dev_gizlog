@@ -78,9 +78,8 @@ class QuestionController extends Controller
     {
         $user = Auth::user();
         $question = $user->questions->find($id);
-        $comments = $this->comment->getComment($id);
 
-        return view('user.question.show', compact('question', 'comments'));
+        return view('user.question.show', compact('question'));
     }
 
     /**
@@ -125,14 +124,6 @@ class QuestionController extends Controller
 
         return redirect()->route('question.myPage');
     }
-
-    // public function storeComment(CommentRequest $request)
-    // {
-    //     $inputs = $request->all();
-    //     $this->comment->fill($inputs)->save();
-
-    //     return redirect()->route('question.show', $inputs['question_id']);
-    // }
 
     public function showMyPage()
     {

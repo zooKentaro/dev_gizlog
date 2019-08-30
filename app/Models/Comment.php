@@ -12,11 +12,4 @@ class Comment extends Model
         'question_id',
         'question_user_id',
     ];
-
-    public function getComment($id)
-    {
-        return $this->where('question_id', $id)
-                    ->orderby('id', 'desc')
-                    ->get();
-    }
 }

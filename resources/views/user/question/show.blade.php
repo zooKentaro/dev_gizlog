@@ -25,15 +25,15 @@
     </div>
   </div>
     <div class="comment-list">
-        <div class="comment-wrap">
-          @foreach($comments as $comment)
-          <div class="comment-title">
-            <img src="{{ $question->user->avatar }}" class="avatar-img">
-            <p>{{ $question->user->name }}</p>
-            <p class="comment-date">{{ $comment->created_at }}</p>
-          </div>
-          <div class="comment-body">{{ $comment->comment }}</div>
-          @endforeach
+      <div class="comment-wrap">
+        @foreach($question->comment as $comment)
+        <div class="comment-title">
+          <img src="{{ $question->user->avatar }}" class="avatar-img">
+          <p>{{ $question->user->name }}</p>
+          <p class="comment-date">{{ $comment->created_at }}</p>
+        </div>
+        <div class="comment-body">{{ $comment->comment }}</div>
+        @endforeach
         </div>
     </div>
   <div class="comment-box">

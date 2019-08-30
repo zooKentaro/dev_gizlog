@@ -15,9 +15,9 @@ use App\Http\Requests\User\CommentRequest;
 
 class QuestionController extends Controller
 {
-    protected $question;
-    protected $comment;
-    protected $tagCategory;
+    private $question;
+    private $comment;
+    private $tagCategory;
 
     public function __construct(Question $question, Comment $comment, TagCategory $taguCategory)
     {
@@ -37,8 +37,9 @@ class QuestionController extends Controller
         $searchWord = $request->input('search_word');
         $searchTag = $request->input('tag_category_id');
         $questions = $this->question->fetchSearchQuestions($searchWord, $searchTag);
+        $tagCategories = $this->tagCategory->all();
 
-        return view('user.question.index', compact('questions'));
+        return view('user.question.index', compact('questions', 'tagCategories'));
     }
 
     /**
@@ -125,14 +126,13 @@ class QuestionController extends Controller
         return redirect()->route('question.myPage');
     }
 
-    public function storeComment(CommentRequest $request)
-    {
-        $inputs = $request->all();
-        $this->comment->fill($inputs)->save();
-        $question_id = $inputs['question_id'];
+    // public function storeComment(CommentRequest $request)
+    // {
+    //     $inputs = $request->all();
+    //     $this->comment->fill($inputs)->save();
 
-        return redirect()->route('question.show', $question_id);
-    }
+    //     return redirect()->route('question.show', $inputs['question_id']);
+    // }
 
     public function showMyPage()
     {

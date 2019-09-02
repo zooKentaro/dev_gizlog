@@ -28,7 +28,7 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(QuestionsRequest $request)
     {
         $searchWord = $request->input('search_word');
         $searchTag = $request->input('tag_category_id');

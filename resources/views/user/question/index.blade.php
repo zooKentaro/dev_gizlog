@@ -5,9 +5,10 @@
 <div class="main-wrap">
   {{ Form::open(['route' => ['question.index'], 'id' => 'categoryForm', 'method' => 'GET']) }}
     <div class="btn-wrapper">
-      <div class="search-box">
+      <div class="search-box @if(!empty($errors->first('search_word'))) has-error @endif">
         {{ Form::input('text', 'search_word', null, ['class' => 'form-control search-form', 'placeholder' => 'Search words...']) }}
         {{ Form::button('<i class="fa fa-search" aria-hidden="true"></i>', ['type' => 'submit', 'class' => 'search-icon']) }}
+        <span class="help-block">{{ $errors->first('search_word') }}</span>
       </div>
       <a class="btn" href="{{ route('question.create') }}"><i class="fa fa-plus" aria-hidden="true"></i></a>
       <a class="btn" href="{{ route('question.showMyPage') }}">

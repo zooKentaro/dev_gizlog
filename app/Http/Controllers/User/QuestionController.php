@@ -6,12 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Question;
 use App\Models\Comment;
-use App\Models\User;
 use App\Models\TagCategory;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\QuestionsRequest;
-use App\Http\Requests\User\CommentRequest;
-
 
 class QuestionController extends Controller
 {
@@ -25,6 +22,7 @@ class QuestionController extends Controller
         $this->comment = $comment;
         $this->tagCategory = $taguCategory;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -32,8 +30,6 @@ class QuestionController extends Controller
      */
     public function index(Request $request)
     {
-        $searchConditions = $request->all();
-
         $searchWord = $request->input('search_word');
         $searchTag = $request->input('tag_category_id');
         $questions = $this->question->fetchSearchQuestions($searchWord, $searchTag);
@@ -77,9 +73,9 @@ class QuestionController extends Controller
     public function show($id)
     {
         $user = Auth::user();
-        $question = $user->questions->find($id);
+        $question = $this->question->with(['user', 'comment', 'comment.user'])->find($id);
 
-        return view('user.question.show', compact('question'));
+        return view('user.question.show', compact('question', 'user'));
     }
 
     /**
@@ -90,8 +86,7 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        $user = Auth::user();
-        $question = $user->questions->find($id);
+        $question = $this->question->find($id);
         $tagCategorys = $this->tagCategory->get();
 
         return view('user.question.edit', compact('question', 'tagCategorys'));

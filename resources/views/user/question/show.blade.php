@@ -28,8 +28,8 @@
       <div class="comment-wrap">
         @foreach($question->comment as $comment)
         <div class="comment-title">
-          <img src="{{ $question->user->avatar }}" class="avatar-img">
-          <p>{{ $question->user->name }}</p>
+          <img src="{{ $comment->user->avatar }}" class="avatar-img">
+          <p>{{ $comment->user->name }}</p>
           <p class="comment-date">{{ $comment->created_at }}</p>
         </div>
         <div class="comment-body">{{ $comment->comment }}</div>
@@ -42,7 +42,7 @@
       {{ Form::input('hidden', 'question_id', $question->id) }}
       {{ Form::input('hidden', 'question_user_id', $question->user->id) }}
       <div class="comment-title">
-        <img src="{{ $question->user->avatar }}" class="avatar-img"><p>コメントを投稿する</p>
+        <img src="{{ $user->avatar }}" class="avatar-img"><p>コメントを投稿する</p>
       </div>
       <div class="comment-body　@if(!empty($errors->first('comment'))) has-error @endif">
         {{ Form::textarea('comment', null,['class' => 'form-control', 'placeholder' => 'Add your comment...']) }}

@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\User\CommentRequest;
 use App\Models\Comment;
 
-
 class CommentController extends Controller
 {
     protected $comment;

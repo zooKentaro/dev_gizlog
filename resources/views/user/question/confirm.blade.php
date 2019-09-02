@@ -12,27 +12,27 @@
         <tbody>
           <tr>
             <th class="table-column">Title</th>
-            <td class="td-text">{{ $sendQuestion['title'] }}</td>
+            <td class="td-text">{{ $question['title'] }}</td>
           </tr>
           <tr>
             <th class="table-column">Question</th>
-            <td class='td-text'>{{ $sendQuestion['content'] }}</td>
+            <td class='td-text'>{{ $question['content'] }}</td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
   <div class="btn-bottom-wrapper">
-    @if(isset($sendQuestion['id']))
-      {{ Form::open(['route' => ['question.update', $sendQuestion['id']], 'method' => 'PUT']) }}
+    @if(isset($question['id']))
+      {{ Form::open(['route' => ['question.update', $question['id']], 'method' => 'PUT']) }}
     @else
       {{ Form::open(['route' => 'question.store']) }}
     @endif
 
-      {{ Form::input('hidden', 'user_id', $sendQuestion['user_id']) }}
-      {{ Form::input('hidden', 'tag_category_id', $sendQuestion['tag_category_id']) }}
-      {{ Form::input('hidden', 'title', $sendQuestion['title']) }}
-      {{ Form::input('hidden', 'content', $sendQuestion['content']) }}
+      {{ Form::input('hidden', 'user_id', $question['user_id']) }}
+      {{ Form::input('hidden', 'tag_category_id', $question['tag_category_id']) }}
+      {{ Form::input('hidden', 'title', $question['title']) }}
+      {{ Form::input('hidden', 'content', $question['content']) }}
       {{ Form::button('<i class="fa fa-check" aria-hidden="true"></i>', ['class' => 'btn btn-success', 'type' => 'submit']) }}
     {{ Form::close() }}
   </div>

@@ -122,16 +122,16 @@ class QuestionController extends Controller
 
     public function showMyPage()
     {
-        $questions = $this->question->with(['user', 'tagCategory', 'comment'])->orderby('id', 'desc')->get();
+        $questions = $this->question->with(['user', 'tagCategory', 'comment'])->orderby('created_at', 'desc')->get();
 
         return view('user.question.mypage', compact('questions'));
     }
 
     public function confirm(QuestionsRequest $request)
     {
-        $sendQuestion = $request->all();
-        $tagName = $this->tagCategory->find($sendQuestion['tag_category_id']);
+        $question = $request->all();
+        $tagName = $this->tagCategory->find($question['tag_category_id']);
 
-        return view('user.question.confirm', compact('sendQuestion', 'tagName'));
+        return view('user.question.confirm', compact('question', 'tagName'));
     }
 }

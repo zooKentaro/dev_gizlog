@@ -40,7 +40,6 @@
     {{ Form::open(['route' => ['question.storeComment']]) }}
       {{ Form::input('hidden', 'user_id', Auth::id()) }}
       {{ Form::input('hidden', 'question_id', $question->id) }}
-      {{ Form::input('hidden', 'question_user_id', $question->user->id) }}
       <div class="comment-title">
         <img src="{{ $user->avatar }}" class="avatar-img"><p>コメントを投稿する</p>
       </div>

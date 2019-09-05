@@ -10,7 +10,6 @@ class Comment extends Model
         'comment',
         'user_id',
         'question_id',
-        'question_user_id',
     ];
 
     public function user()
@@ -18,3 +17,4 @@ class Comment extends Model
         return $this->belongsTo('App\Models\User');
     }
 }
+

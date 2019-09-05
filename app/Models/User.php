@@ -46,6 +46,11 @@ class User extends Authenticatable
         return $this->hasMany(Attendance::class, 'user_id')->orderBy('date', 'desc');
     }
 
+    public function questions()
+    {
+        return $this->hasMany('App\Models\Question');
+    }
+
     public function createUserInstance($slackId)
     {
         return $this->withTrashed()->whereNotNull('id')->firstOrNew(['slack_user_id' => $slackId]);
@@ -63,19 +68,14 @@ class User extends Authenticatable
             'slack_user_id' => $slackUserInfos->id,
             'email'         => $slackUserInfos->email,
             'avatar'        => $slackUserInfos->avatar,
-        ])->save();
-    }
+            ])->save();
+        }
 
-    public function restoreDeletedUser($userInfoId)
-    {
-        DB::transaction(function() use($userInfoId) {
-            $this->withTrashed()->where('user_info_id', $userInfoId)->update(['deleted_at' => null]);
-        });
+        public function restoreDeletedUser($userInfoId)
+        {
+            DB::transaction(function() use($userInfoId) {
+                $this->withTrashed()->where('user_info_id', $userInfoId)->update(['deleted_at' => null]);
+            });
+        }
     }
-
-    public function questions()
-    {
-        return $this->hasmany('App\Models\Question');
-    }
-}
 

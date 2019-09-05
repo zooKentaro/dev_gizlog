@@ -42,10 +42,10 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
 
     Route::resource('report', DailyReportController::class);
 
-    Route::resource('question', QuestionController::class)->middleware('auth');
     Route::post('comment', 'CommentController@storeComment')->name('question.storeComment')->middleware('auth');
     Route::get('myPage', 'QuestionController@showMyPage')->name('question.showMyPage')->middleware('auth');
     Route::post('confirm', 'QuestionController@confirm')->name('question.confirm')->middleware('auth');
+    Route::resource('question', QuestionController::class)->middleware('auth');
 
 });
 

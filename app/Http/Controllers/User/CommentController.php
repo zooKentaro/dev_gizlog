@@ -15,6 +15,12 @@ class CommentController extends Controller
         $this->comment = $comment;
     }
 
+    /**
+    * Store a newly created resource in storage.
+    *
+    * @param App\Http\Requests\User\CommentRequest $request
+    * @return \Illuminate\Http\Response
+    */
     public function storeComment(CommentRequest $request)
     {
         $inputs = $request->all();

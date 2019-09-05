@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\User;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Question;
 use App\Models\Comment;
@@ -16,16 +15,17 @@ class QuestionController extends Controller
     private $comment;
     private $tagCategory;
 
-    public function __construct(Question $question, Comment $comment, TagCategory $taguCategory)
+    public function __construct(Question $question, Comment $comment, TagCategory $tagCategory)
     {
         $this->question = $question;
         $this->comment = $comment;
-        $this->tagCategory = $taguCategory;
+        $this->tagCategory = $tagCategory;
     }
 
     /**
      * Display a listing of the resource.
      *
+     * @param App\Http\Requests\User\QuestionsRequest $request
      * @return \Illuminate\Http\Response
      */
     public function index(QuestionsRequest $request)
@@ -45,15 +45,15 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        $tagCategorys = $this->tagCategory->get();
+        $tagCategories = $this->tagCategory->all();
 
-        return view('user.question.create', compact('tagCategorys'));
+        return view('user.question.create', compact('tagCategories'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\User\QuestionsRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(QuestionsRequest $request)
@@ -87,15 +87,15 @@ class QuestionController extends Controller
     public function edit($id)
     {
         $question = $this->question->find($id);
-        $tagCategorys = $this->tagCategory->get();
+        $tagCategories = $this->tagCategory->all();
 
-        return view('user.question.edit', compact('question', 'tagCategorys'));
+        return view('user.question.edit', compact('question', 'tagCategories'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  @param App\Http\Requests\User\QuestionsRequest $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -120,18 +120,32 @@ class QuestionController extends Controller
         return redirect()->route('question.showMyPage');
     }
 
+    /**
+    * Display the My Page of the question.
+    *
+    * @return \Illuminate\Http\Response
+    */
     public function showMyPage()
     {
-        $questions = $this->question->with(['user', 'tagCategory', 'comment'])->orderby('created_at', 'desc')->get();
+        $questions = $this->question->with(['user', 'tagCategory', 'comment'])
+                                    ->where('user_id', Auth::id())
+                                    ->orderby('created_at', 'desc')
+                                    ->get();
 
         return view('user.question.mypage', compact('questions'));
     }
 
+    /**
+    * Check what you are trying to update.
+    *
+    * @param App\Http\Requests\User\QuestionsRequest $request
+    * @return \Illuminate\Http\Response
+    */
     public function confirm(QuestionsRequest $request)
     {
         $question = $request->all();
-        $tagName = $this->tagCategory->find($question['tag_category_id']);
+        $tagCategories = $this->tagCategory->find($question['tag_category_id']);
 
-        return view('user.question.confirm', compact('question', 'tagName'));
+        return view('user.question.confirm', compact('question', 'tagCategories'));
     }
 }

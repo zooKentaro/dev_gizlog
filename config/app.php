@@ -28,6 +28,9 @@ return [
 
     'env' => env('APP_ENV', 'production'),
 
+    //Fakerの日本語化
+    'faker_locale' => env('APP_FAKER_LOCALE', 'ja_JP'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode

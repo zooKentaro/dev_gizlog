@@ -16,7 +16,7 @@
       </a>
     </div>
     <div class="category-wrap">
-      <div class="btn all" id="0">all</div>
+      <div class="btn all" id="">all</div>
       @foreach($tagCategories as $tagCategory)
         <div class="btn {{ $tagCategory->name }}" id="{{ $tagCategory->id }}">{{ $tagCategory->name }}</div>
       @endforeach
@@ -34,8 +34,8 @@
           <th class="col-xs-2"></th>
         </tr>
       </thead>
-      @foreach ($questions as $question)
       <tbody>
+        @foreach ($questions as $question)
         <tr class="row">
           <td class="col-xs-1"><img src="{{ $question->user->avatar }}" class="avatar-img"></td>
           <td class="col-xs-2">{{ $question->tagCategory->name }}</td>
@@ -47,8 +47,8 @@
             </a>
           </td>
         </tr>
+        @endforeach
       </tbody>
-      @endforeach
     </table>
     <div aria-label="Page navigation example" class="text-center"></div>
   </div>

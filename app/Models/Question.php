@@ -16,29 +16,6 @@ class Question extends Model
         'content',
     ];
 
-    public function fetchSearchQuestions($searchWord, $searchTag)
-    {
-        return $this->with(['user', 'tagCategory', 'comment'])
-                    ->searchWord($searchWord)
-                    ->searchTagCategory($searchTag)
-                    ->orderby('id', 'desc')
-                    ->get();
-    }
-
-    public function scopeSearchTagCategory($query, $tagCategoryId)
-    {
-        if(!empty($tagCategoryId)) {
-            return $query->where('tag_category_id', $tagCategoryId);
-        }
-    }
-
-    public function scopeSearchWord($query, $searchWord)
-    {
-        if(!empty($searchWord)) {
-            return $query->where('title', 'LIKE', "%$searchWord%");
-        }
-    }
-
     public function user()
     {
         return $this->belongsTo('App\Models\User');
@@ -53,5 +30,29 @@ class Question extends Model
     {
         return $this->hasMany('App\Models\Comment');
     }
+
+    public function fetchSearchQuestions($searchWord, $searchTag)
+    {
+        return $this->with(['user', 'tagCategory', 'comment'])
+                    ->searchWord($searchWord)
+                    ->searchTagCategory($searchTag)
+                    ->orderby('id', 'desc')
+                    ->get();
+    }
+
+    public function scopeSearchTagCategory($query, $tagCategoryId)
+    {
+        if (!empty($tagCategoryId)) {
+            return $query->where('tag_category_id', $tagCategoryId);
+        }
+    }
+
+    public function scopeSearchWord($query, $searchWord)
+    {
+        if (!empty($searchWord)) {
+            return $query->where('title', 'LIKE', "%$searchWord%");
+        }
+    }
+
 }
 

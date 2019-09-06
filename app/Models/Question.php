@@ -53,6 +53,5 @@ class Question extends Model
             return $query->where('title', 'LIKE', "%$searchWord%");
         }
     }
-
 }
 

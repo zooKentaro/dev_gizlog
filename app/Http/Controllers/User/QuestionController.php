@@ -53,7 +53,7 @@ class QuestionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  App\Http\Requests\User\QuestionsRequest  $request
+     * @param App\Http\Requests\User\QuestionsRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(QuestionsRequest $request)
@@ -67,13 +67,13 @@ class QuestionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $user = Auth::user();
-        $question = $this->question->with(['user', 'comment', 'comment.user'])->find($id);
+        $question = $this->question->with(['user', 'comments', 'comments.user'])->find($id);
 
         return view('user.question.show', compact('question', 'user'));
     }
@@ -81,7 +81,7 @@ class QuestionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -95,8 +95,8 @@ class QuestionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  @param App\Http\Requests\User\QuestionsRequest $request
-     * @param  int  $id
+     * @param App\Http\Requests\User\QuestionsRequest $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(QuestionsRequest $request, $id)
@@ -110,7 +110,7 @@ class QuestionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -127,7 +127,7 @@ class QuestionController extends Controller
     */
     public function showMyPage()
     {
-        $questions = $this->question->with(['user', 'tagCategory', 'comment'])
+        $questions = $this->question->with(['user', 'tagCategory', 'comments'])
                                     ->where('user_id', Auth::id())
                                     ->orderby('created_at', 'desc')
                                     ->get();

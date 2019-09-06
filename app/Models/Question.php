@@ -26,14 +26,14 @@ class Question extends Model
         return $this->belongsTo('App\Models\TagCategory');
     }
 
-    public function comment()
+    public function comments()
     {
         return $this->hasMany('App\Models\Comment');
     }
 
     public function fetchSearchQuestions($searchWord, $searchTag)
     {
-        return $this->with(['user', 'tagCategory', 'comment'])
+        return $this->with(['user', 'tagCategory', 'comments'])
                     ->searchWord($searchWord)
                     ->searchTagCategory($searchTag)
                     ->orderby('id', 'desc')

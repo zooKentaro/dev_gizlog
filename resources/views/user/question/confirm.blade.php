@@ -28,7 +28,6 @@
     @else
       {{ Form::open(['route' => 'question.store']) }}
     @endif
-
       {{ Form::input('hidden', 'user_id', $question['user_id']) }}
       {{ Form::input('hidden', 'tag_category_id', $question['tag_category_id']) }}
       {{ Form::input('hidden', 'title', $question['title']) }}

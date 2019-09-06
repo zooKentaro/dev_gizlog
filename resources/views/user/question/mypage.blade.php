@@ -13,8 +13,6 @@
           <th class="col-xs-1">category</th>
           <th class="col-xs-5">title</th>
           <th class="col-xs-2">comments</th>
-          <th class="col-xs-1"></th>
-          <th class="col-xs-1"></th>
         </tr>
       </thead>
       @foreach($questions as $question)

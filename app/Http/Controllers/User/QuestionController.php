@@ -25,7 +25,7 @@ class QuestionController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param App\Http\Requests\User\QuestionsRequest $request
+     * @param QuestionsRequest $request
      * @return \Illuminate\Http\Response
      */
     public function index(QuestionsRequest $request)
@@ -54,7 +54,7 @@ class QuestionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param App\Http\Requests\User\QuestionsRequest $request
+     * @param QuestionsRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(QuestionsRequest $request)
@@ -97,7 +97,7 @@ class QuestionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param App\Http\Requests\User\QuestionsRequest $request
+     * @param QuestionsRequest $request
      * @param int $id
      * @return \Illuminate\Http\Response
      */
@@ -130,9 +130,9 @@ class QuestionController extends Controller
     public function showMyPage()
     {
         $questions = $this->question->with(['user', 'tagCategory', 'comments'])
-                                    ->where('user_id', Auth::id())
-                                    ->orderby('created_at', 'desc')
-                                    ->get();
+            ->where('user_id', Auth::id())
+            ->orderby('created_at', 'desc')
+            ->get();
 
         return view('user.question.mypage', compact('questions'));
     }

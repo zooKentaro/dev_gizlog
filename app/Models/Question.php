@@ -34,10 +34,10 @@ class Question extends Model
     public function fetchSearchQuestions($searchWord, $searchTag)
     {
         return $this->with(['user', 'tagCategory', 'comments'])
-                    ->searchWord($searchWord)
-                    ->searchTagCategory($searchTag)
-                    ->orderby('id', 'desc')
-                    ->get();
+            ->searchWord($searchWord)
+            ->searchTagCategory($searchTag)
+            ->orderby('id', 'desc')
+            ->get();
     }
 
     public function scopeSearchTagCategory($query, $tagCategoryId)

@@ -22,10 +22,11 @@ class QuestionsRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(TagCategory $tagCategory)
     {
+        $tagCategories = $tagCategory->all()->count();
         return [
-            'tag_category_id' => 'sometimes|required_with:title,content|in:1,2,3,4,""',
+            'tag_category_id' => "sometimes|required_with:title,content|nullable|lte:$tagCategories",
             'title'           => 'sometimes|required|max:30',
             'content'         => 'sometimes|required|max:1000',
             'search_word'     => 'sometimes|max:50'

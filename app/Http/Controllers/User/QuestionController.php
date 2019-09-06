@@ -45,9 +45,10 @@ class QuestionController extends Controller
      */
     public function create()
     {
+        $user = Auth::user();
         $tagCategories = $this->tagCategory->all();
 
-        return view('user.question.create', compact('tagCategories'));
+        return view('user.question.create', compact('tagCategories', 'user'));
     }
 
     /**

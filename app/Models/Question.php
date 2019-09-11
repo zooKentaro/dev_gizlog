@@ -36,7 +36,7 @@ class Question extends Model
         return $this->with(['user', 'tagCategory', 'comments'])
             ->searchWord($searchWord)
             ->searchTagCategory($searchTag)
-            ->orderby('id', 'desc')
+            ->orderBy('id', 'desc')
             ->get();
     }
 
@@ -54,4 +54,3 @@ class Question extends Model
         }
     }
 }
-

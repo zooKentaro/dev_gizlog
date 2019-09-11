@@ -131,7 +131,7 @@ class QuestionController extends Controller
     {
         $questions = $this->question->with(['user', 'tagCategory', 'comments'])
             ->where('user_id', Auth::id())
-            ->orderby('created_at', 'desc')
+            ->orderBy('created_at', 'desc')
             ->get();
 
         return view('user.question.mypage', compact('questions'));

@@ -35,7 +35,7 @@
               <span class="help-block"><strong>{{ $errors->first('name') }}</strong></span>
             @endif
           </div>
-  
+
           <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
             {!! Form::input('password', 'password', null, ['class' => 'form-control', 'placeholder' => 'Your password']) !!}
             @if ($errors->has('password'))

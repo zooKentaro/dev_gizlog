@@ -11,6 +11,8 @@
 |
  */
 
+// use App\Http\Controllers\User\AttendanceController;
+
 Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
     Auth::routes();
 
@@ -38,7 +40,7 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
     Route::post('question/{id}/comment', ['as' => 'question.comment', 'uses' => 'QuestionController@storeComment']);
     Route::resource('question', QuestionController::class);
 
-    /* 
+    /*
      * ----------------------------------------------------------
      * 静的なページが簡単に確認できるように ClosureでViewを返しています。処理に応じて編集してください。
      * 尚、このコメントアウトはコード提出の際は削除してください。
@@ -55,6 +57,8 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
     Route::get('attendance/mypage', function () {
         return view('user.attendance.mypage');
     });
+    Route::resource('attendance', AttendanceController::class);
+
     /*
      * ---------------------------------------------------------
      */
@@ -71,7 +75,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.' ,'namespace' => 'Admin'], fu
 
     Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
-    /* 
+    /*
      * ----------------------------------------------------------
      * 静的なページが簡単に確認できるように ClosureでViewを返しています。処理に応じて編集してください。
      * 尚、このコメントアウトはコード提出の際は削除してください。
@@ -117,4 +121,3 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.' ,'namespace' => 'Admin'], fu
     Route::get('/register/', 'Auth\AdminRegisterController@showAdminRegistrationForm');
 
 });
-

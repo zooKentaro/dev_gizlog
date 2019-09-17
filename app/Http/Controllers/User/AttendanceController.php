@@ -4,9 +4,18 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Attendance;
+use Illuminate\Support\Facades\Auth;
 
 class AttendanceController extends Controller
 {
+    private $attendance;
+
+    public function __construct(Attendance $attendance)
+    {
+        $this->attendance = $attendance;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +23,9 @@ class AttendanceController extends Controller
      */
     public function index()
     {
+        $user = Auth::User();
 
-        return view('user.attendance.index');
+        return view('user.attendance.index', compact('user'));
     }
 
     /**
@@ -36,7 +46,11 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $inputs = $request->all();
+        $inputs['modification_flg'] = 0;
+        $this->attendance->fill($inputs)->create($inputs);
+
+        return redirect()->route('attendance.index');
     }
 
     /**

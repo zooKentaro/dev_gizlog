@@ -14,6 +14,7 @@
   </div>
   <div class="button-holder">
       <a class="button start-btn" id="register-attendance" href=#openModal>出社時間登録</a>
+      {{-- <a class="button end-btn" id="register-attendance" href=#openModal>退社時間登録</a> --}}
   </div>
   <ul class="button-wrap">
     <li>
@@ -32,16 +33,15 @@
   <div>
     <div class="register-text-wrap"><p>12:38 で出社時間を登録しますか？</p></div>
     <div class="register-btn-wrap">
-      <form>
+      {{ Form::open(['route' => ['attendance.store']]) }}
         <input id="date-time-target" name="start_time" type="hidden" value="2019-07-03 12:38:41">
-        <input name="user_id" type="hidden" value="4">
-        <input name="date" type="hidden" value="2019-07-03">
+        <input name="user_id" type="hidden" value="{{ $user->id }}">
+        <input id="date-time" name="date" type="hidden" value="2019-07-03">
         <a href="#close" class="cancel-btn">Cancel</a>
         <input class="yes-btn" type="submit" value="Yes">
-      </form>
+      {{ Form::close() }}
     </div>
   </div>
 </div>
 
 @endsection
-

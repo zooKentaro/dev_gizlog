@@ -16,14 +16,14 @@ class AttendancesTableSeeder extends Seeder
         DB::table('attendances')->insert([
             [
                 'user_id'               => 4,
-                'start_time'            => Carbon::now(),
-                'end_time'              => Carbon::now(),
+                'start_time'            => Carbon::create(2019, 8, 1, 10, 10, 10),
+                'end_time'              => Carbon::create(2019, 8, 1, 10, 10, 10),
                 'modification_flg'      => 0,
                 'modification_reason'   => null,
                 'absence_reason'        => null,
                 'modification_time'     => null,
-                'created_at'            => Carbon::now(),
-                'updated_at'            => Carbon::now(),
+                'created_at'            => Carbon::create(2019, 8, 1, 10, 10, 10),
+                'updated_at'            => Carbon::create(2019, 8, 1, 10, 10, 10),
                 'deleted_at'            => null,
             ]
         ]);

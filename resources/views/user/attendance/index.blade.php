@@ -13,8 +13,13 @@
     </div>
   </div>
   <div class="button-holder">
+    @if(empty($todayDate['start_time']))
       <a class="button start-btn" id="register-attendance" href=#openModal>出社時間登録</a>
-      {{-- <a class="button end-btn" id="register-attendance" href=#openModal>退社時間登録</a> --}}
+    @elseif(empty($todayDate['end_time']))
+      <a class="button end-btn" id="register-attendance" href=#openModal>退社時間登録</a>
+    @else
+      <a class="button disabled" id="register-attendance" href=#openModal>退社済み</a>
+    @endif
   </div>
   <ul class="button-wrap">
     <li>
@@ -33,7 +38,13 @@
   <div>
     <div class="register-text-wrap"><p>12:38 で出社時間を登録しますか？</p></div>
     <div class="register-btn-wrap">
-      {{ Form::open(['route' => ['attendance.store']]) }}
+      @if (empty($todayDate['start_time']))
+        {{ Form::open(['route' => ['attendance.store']]) }}
+      @elseif(empty($todayDate['end_time']))
+        {{ Form::open(['route' => ['attendance.update', $todayDate['id']], 'method' => 'PUT']) }}
+      @else
+        //何も送信しないようにする
+      @endif
         <input id="date-time-target" name="start_time" type="hidden" value="2019-07-03 12:38:41">
         <input name="user_id" type="hidden" value="{{ $user->id }}">
         <input id="date-time" name="date" type="hidden" value="2019-07-03">

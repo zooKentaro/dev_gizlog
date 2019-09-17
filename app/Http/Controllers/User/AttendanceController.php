@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class AttendanceController extends Controller
 {
@@ -24,8 +25,9 @@ class AttendanceController extends Controller
     public function index()
     {
         $user = Auth::User();
+        $todayDate = $this->attendance->todaysRecord($user->id);
 
-        return view('user.attendance.index', compact('user'));
+        return view('user.attendance.index', compact('user', 'todayDate'));
     }
 
     /**
@@ -84,7 +86,11 @@ class AttendanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $inputs = $request->all();
+        $inputs['end_time'] = Carbon::now();
+        $this->attendance->find($id)->fill($inputs)->save();
+
+        return redirect()->route('attendance.index');
     }
 
     /**

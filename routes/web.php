@@ -57,6 +57,8 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
     Route::get('attendance/mypage', function () {
         return view('user.attendance.mypage');
     });
+    Route::put('modification/{id}', 'AttendanceController@modificationUpdate')->name('modification.update');
+    Route::post('absence/{id}', 'AttendanceController@absenceStore')->name('absence.store');
     Route::resource('attendance', AttendanceController::class);
 
     /*

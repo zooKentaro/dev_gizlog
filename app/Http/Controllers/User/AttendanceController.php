@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Attendance;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use App\Http\Requests\User\AttendanceRequest;
 
 class AttendanceController extends Controller
 {
@@ -43,10 +44,10 @@ class AttendanceController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  AttendanceRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AttendanceRequest $request)
     {
         $inputs = $request->all();
         $inputs['modification_flg'] = 0;
@@ -102,5 +103,41 @@ class AttendanceController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     *
+     * @param AttendanceRequest $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function absenceStore(AttendanceRequest $request, $id)
+    {
+        $inputs = $request->all();
+        $inputs['modification_flg'] = 0;
+        $inputs['user_id'] = Auth::id();
+        //$this->attendance->checkAbsenceStatus();  //欠席理由を登録する際に今日のレコードがあるかどうかのチェック用メソッド 一旦保留
+
+        $this->attendance->fill($inputs)->create($inputs);
+
+        return redirect()->route('attendance.index');
+    }
+
+    /**
+     * @param AttendanceRequest $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function modificationUpdate(AttendanceRequest $request, $id)
+    {
+        $inputs = $request->all();
+        $inputs['modification_flg'] = 1;
+        $requestDayDate = $this->attendance->whereDate('start_time', $inputs['requestDay'])->get();
+        if (empty($requestDayDate[0])) {
+            return redirect()->route('attendance.index');
+        }
+        $this->attendance->find($requestDayDate[0]['id'])->fill($inputs)->save();
+
+        return redirect()->route('attendance.index');
     }
 }

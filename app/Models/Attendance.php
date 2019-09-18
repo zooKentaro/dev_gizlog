@@ -15,6 +15,9 @@ class Attendance extends Model
         'end_time',
         'user_id',
         'modification_flg',
+        'modification_reason',
+        'absence_reason',
+        'modification_time',
     ];
 
     public function todaysRecord($id)
@@ -34,4 +37,16 @@ class Attendance extends Model
     {
         //
     }
+
+    // public function checkAbsenceStatus()
+    // {
+    //     $this->checkExistingRecord();
+    // }
+
+    // public function scopeCheckExistingRecord($query)
+    // {
+    //     // $test = $query->whereDate('created_at', Carbon::today()->format('Y-m-d))->exists();
+    //     // $test = Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->format('Y-m-d');
+    //     // dd($test);
+    // }
 }

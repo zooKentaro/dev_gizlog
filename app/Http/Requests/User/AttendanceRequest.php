@@ -27,6 +27,7 @@ class AttendanceRequest extends FormRequest
             'request_content' => 'sometimes|required|max:200',
             'absent_reason'   => 'sometimes|required|max:200',
             'date'            => 'sometimes|required',
+            'absence_reason'  => 'sometimes|required|max:500',
         ];
     }
 
@@ -38,7 +39,8 @@ class AttendanceRequest extends FormRequest
             'absent_reason.required'   => '入力必須の項目です',
             'absent_reason.max'        => '200文字以内で入力してください。',
             'date.required'            => '入力必須の項目です',
+            'absence_reason.required'  => '入力必須の項目です',
+            'absence_reason.max'       => '500文字以内で入力してください。',
         ];
     }
 }
-

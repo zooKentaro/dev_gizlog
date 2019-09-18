@@ -23,13 +23,13 @@
   </div>
   <ul class="button-wrap">
     <li>
-      <a class="at-btn absence" href="/attendance/absence">欠席登録</a>
+      <a class="at-btn absence" href="{{ route('absence') }}">欠席登録</a>
     </li>
     <li>
-      <a class="at-btn modify" href="/attendance/modify">修正申請</a>
+      <a class="at-btn modify" href="{{ route('modify') }}">修正申請</a>
     </li>
     <li>
-      <a class="at-btn my-list" href="/attendance/mypage">マイページ</a>
+      <a class="at-btn my-list" href="{{ route('mypage') }}">マイページ</a>
     </li>
   </ul>
 </div>

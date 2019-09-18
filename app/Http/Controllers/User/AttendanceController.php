@@ -140,4 +140,19 @@ class AttendanceController extends Controller
 
         return redirect()->route('attendance.index');
     }
+
+    public function showAbsence()
+    {
+        return view('user.attendance.absence');
+    }
+
+    public function showModify()
+    {
+        return view('user.attendance.modify');
+    }
+
+    public function showMypage()
+    {
+        return view('user.attendance.mypage');
+    }
 }

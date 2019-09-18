@@ -132,7 +132,7 @@ class AttendanceController extends Controller
     {
         $inputs = $request->all();
         $inputs['modification_flg'] = 1;
-        $requestDayDate = $this->attendance->whereDate('start_time', $inputs['requestDay'])->get();
+        $requestDayDate = $this->attendance->whereDate('start_time', $inputs['request_day'])->get();
         if (empty($requestDayDate[0])) {
             return redirect()->route('attendance.index');
         }

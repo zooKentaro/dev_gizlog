@@ -141,18 +141,41 @@ class AttendanceController extends Controller
         return redirect()->route('attendance.index');
     }
 
+    /**
+     * @return \Illuminate\Http\Response
+     */
     public function showAbsence()
     {
         return view('user.attendance.absence');
     }
 
+    /**
+     * @return \Illuminate\Http\Response
+     */
     public function showModify()
     {
         return view('user.attendance.modify');
     }
 
+    /**
+     * @return \Illuminate\Http\Response
+     */
     public function showMypage()
     {
-        return view('user.attendance.mypage');
+        $myAttendances = $this->attendance->where('user_id', Auth::id())->get();
+        $totalDays = $this->attendance->whereNotNull('end_time')->count();
+        $user = Auth::user();
+        $totalTime = 0;
+        foreach($myAttendances as $myAttendance)
+        {
+            if (!empty($myAttendance->start_time) && !empty($myAttendance->end_time)) {
+                $data1 = new Carbon($myAttendance->end_time);
+                $data2 = new Carbon($myAttendance->start_time);
+                $totalTime += $data1->diffInMinutes($data2)/60;
+            }
+        }
+        $totalTimes = round($totalTime, 0);
+
+        return view('user.attendance.mypage', compact('myAttendances', 'user', 'totalDays', 'totalTimes'));
     }
 }

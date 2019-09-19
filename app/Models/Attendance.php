@@ -20,6 +20,11 @@ class Attendance extends Model
         'modification_time',
     ];
 
+    protected $dates =[
+        'start_time',
+        'end_time',
+    ];
+
     public function todaysRecord($id)
     {
         return $this->where('user_id', $id)
@@ -36,6 +41,11 @@ class Attendance extends Model
     public function scopeExistingEndTime()
     {
         //
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\user');
     }
 
     // public function checkAbsenceStatus()

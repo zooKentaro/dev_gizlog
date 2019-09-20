@@ -34,7 +34,7 @@
       <tbody>
         @foreach($myAttendances as $myAttendance)
           @if(empty($myAttendance->start_time) && empty($myAttendance->end_time))
-            <tr class="row　absent-row">
+            <tr class="row absent-row">
               <td class="col-xs-2">{{ $myAttendance->created_at->format('m-d (D)') }}</td>
               <td class="col-xs-3">{{ empty($myAttendance->start_time) ? '-' : $myAttendance->start_time->format('H:i') }}</td>
               <td class="col-xs-3">{{ empty($myAttendance->end_time) ? '-' : $myAttendance->end_time->format('H:i') }}</td>

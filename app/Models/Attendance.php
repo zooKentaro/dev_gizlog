@@ -17,7 +17,7 @@ class Attendance extends Model
         'modification_flg',
         'modification_reason',
         'absence_reason',
-        'modification_time',
+        'registration_date',
     ];
 
     protected $dates =[

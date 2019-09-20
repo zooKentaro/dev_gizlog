@@ -47,7 +47,7 @@
       @endif
         <input id="date-time-target" name="start_time" type="hidden" value="2019-07-03 12:38:41">
         <input name="user_id" type="hidden" value="{{ $user->id }}">
-        <input id="date-time" name="date" type="hidden" value="2019-07-03">
+        <input id="date-time" name="registration_date" type="hidden" value="2019-07-03">
         <a href="#close" class="cancel-btn">Cancel</a>
         <input class="yes-btn" type="submit" value="Yes">
       {{ Form::close() }}

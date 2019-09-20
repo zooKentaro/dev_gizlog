@@ -12,7 +12,6 @@
       <div class="form-group @if(!empty($errors->first('modification_reason'))) has-error @endif">
         {{ Form::textarea('modification_reason', null, ['class' => 'form-control', 'placeholder' => '修正申請の内容を入力してください。']) }}
         <span class="help-block">{{ $errors->first('modification_reason') }}</span>
-        {{-- <textarea class="form-control" placeholder="修正申請の内容を入力してください。" name="modification_reason" cols="50" rows="10"></textarea> --}}
       </div>
       <input class="btn btn-success pull-right" type="submit" value="申請">
       {{ Form::hidden('user_id', Auth::id()) }}

@@ -115,10 +115,17 @@ class AttendanceController extends Controller
     {
         $inputs = $request->all();
         $inputs['modification_flg'] = 0;
-        $inputs['user_id'] = Auth::id();
+        $inputs['user_id'] = $id;
+        $this->attendance->updateOrCreate(['registration_date' => $inputs['registration_date']],
+            ['user_id' => $inputs['user_id'],
+            'modification_flg' => $inputs['modification_flg'],
+            'registration_date' => $inputs['registration_date'],
+            'absence_reason' => $inputs['absence_reason'],
+            ]
+        );
         //$this->attendance->checkAbsenceStatus();  //欠席理由を登録する際に今日のレコードがあるかどうかのチェック用メソッド 一旦保留
 
-        $this->attendance->fill($inputs)->create($inputs);
+        // $this->attendance->fill($inputs)->create($inputs);
 
         return redirect()->route('attendance.index');
     }

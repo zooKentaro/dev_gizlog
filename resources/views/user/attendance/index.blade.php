@@ -40,12 +40,13 @@
     <div class="register-btn-wrap">
       @if (empty($todayDate['start_time']))
         {{ Form::open(['route' => ['attendance.store']]) }}
+        <input id="date-time-target" name="start_time" type="hidden" value="2019-07-03 12:38:41">
       @elseif(empty($todayDate['end_time']))
         {{ Form::open(['route' => ['attendance.update', $todayDate['id']], 'method' => 'PUT']) }}
+        <input id="date-time-target" name="end_time" type="hidden" value="2019-07-03 12:38:41">
       @else
         //何も送信しないようにする
       @endif
-        <input id="date-time-target" name="start_time" type="hidden" value="2019-07-03 12:38:41">
         <input name="user_id" type="hidden" value="{{ $user->id }}">
         <input id="date-time" name="registration_date" type="hidden" value="2019-07-03">
         <a href="#close" class="cancel-btn">Cancel</a>

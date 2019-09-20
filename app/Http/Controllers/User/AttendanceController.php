@@ -88,7 +88,6 @@ class AttendanceController extends Controller
     public function update(Request $request, $id)
     {
         $inputs = $request->all();
-        $inputs['end_time'] = Carbon::now();
         $this->attendance->find($id)->fill($inputs)->save();
 
         return redirect()->route('attendance.index');

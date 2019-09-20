@@ -21,7 +21,7 @@ class CreateAttendancesTable extends Migration
             $table->tinyInteger('modification_flg')->nullable(false);
             $table->text('modification_reason')->nullable();
             $table->text('absence_reason')->nullable();
-            $table->dateTime('modification_time')->nullable();
+            $table->date('registration_date')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

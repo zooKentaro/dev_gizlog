@@ -28,7 +28,7 @@ class Attendance extends Model
     public function todaysRecord($id)
     {
         return $this->where('user_id', $id)
-            ->whereDate('start_time', Carbon::today()->format('Y-m-d'))
+            ->where('registration_date', Carbon::today()->format('Y-m-d'))
             ->orderBy('id', 'desc')
             ->first();
     }
@@ -47,16 +47,4 @@ class Attendance extends Model
     {
         return $this->belongsTo('App\Models\user');
     }
-
-    // public function checkAbsenceStatus()
-    // {
-    //     $this->checkExistingRecord();
-    // }
-
-    // public function scopeCheckExistingRecord($query)
-    // {
-    //     // $test = $query->whereDate('created_at', Carbon::today()->format('Y-m-d))->exists();
-    //     // $test = Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->format('Y-m-d');
-    //     // dd($test);
-    // }
 }

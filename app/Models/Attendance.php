@@ -25,6 +25,11 @@ class Attendance extends Model
         'end_time',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo('App\Models\user');
+    }
+
     public function todaysRecord($id)
     {
         return $this->where('user_id', $id)
@@ -33,8 +38,12 @@ class Attendance extends Model
             ->first();
     }
 
-    public function user()
+    public function attendanceExists($id)
     {
-        return $this->belongsTo('App\Models\user');
+        return $this->where('user_id', $id)
+            ->where('registration_date', Carbon::today()
+            ->format('Y-m-d'))
+            ->exists();
     }
+
 }

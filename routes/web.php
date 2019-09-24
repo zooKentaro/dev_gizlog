@@ -68,18 +68,18 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.' ,'namespace' => 'Admin'], fu
      * 静的なページが簡単に確認できるように ClosureでViewを返しています。処理に応じて編集してください。
      * 尚、このコメントアウトはコード提出の際は削除してください。
      */
-    // Route::get('attendance', function () {
-    //     return view('admin.attendance.index');
-    // });
-    // Route::get('attendance/create', function () {
-    //     return view('admin.attendance.create');
-    // });
-    // Route::get('attendance/edit', function () {
-    //     return view('admin.attendance.edit');
-    // });
-    // Route::get('attendance/user', function () {
-    //     return view('admin.attendance.user');
-    // });
+    Route::get('attendance', function () {
+        return view('admin.attendance.index');
+    });
+    Route::get('attendance/create', function () {
+        return view('admin.attendance.create');
+    });
+    Route::get('attendance/edit', function () {
+        return view('admin.attendance.edit');
+    });
+    Route::get('attendance/user', function () {
+        return view('admin.attendance.user');
+    });
 
     Route::resource('attendance', AttendanceController::class);
     /*

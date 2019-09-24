@@ -33,16 +33,6 @@ class Attendance extends Model
             ->first();
     }
 
-    public function scopeExistingStartTime()
-    {
-        //
-    }
-
-    public function scopeExistingEndTime()
-    {
-        //
-    }
-
     public function user()
     {
         return $this->belongsTo('App\Models\user');

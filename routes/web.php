@@ -13,6 +13,10 @@
 
 // use App\Http\Controllers\User\AttendanceController;
 
+use App\Http\Controllers\User;
+use App\Http\Controllers\Admin;
+use App\Models\Attendance;
+
 Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
     Auth::routes();
 
@@ -40,33 +44,12 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
     Route::post('question/{id}/comment', ['as' => 'question.comment', 'uses' => 'QuestionController@storeComment']);
     Route::resource('question', QuestionController::class);
 
-    /*
-     * ----------------------------------------------------------
-     * 静的なページが簡単に確認できるように ClosureでViewを返しています。処理に応じて編集してください。
-     * 尚、このコメントアウトはコード提出の際は削除してください。
-     */
-    // Route::get('attendance', function () {
-    //     return view('user.attendance.index');
-    // });
-    // Route::get('attendance/absence', function () {
-    //     return view('user.attendance.absence');
-    // });
-    // Route::get('attendance/modify', function () {
-    //     return view('user.attendance.modify');
-    // });
-    // Route::get('attendance/mypage', function () {
-    //     return view('user.attendance.mypage');
-    // });
     Route::put('modification/{id}', 'AttendanceController@modificationUpdate')->name('modification.update');
     Route::post('absence/{id}', 'AttendanceController@absenceStore')->name('absence.store');
     Route::get('absence', 'AttendanceController@showAbsence')->name('absence');
     Route::get('modify', 'AttendanceController@showModify')->name('modify');
     Route::get('mypage', 'AttendanceController@showMypage')->name('mypage');
-    Route::resource('attendance', AttendanceController::class);
-
-    /*
-     * ---------------------------------------------------------
-     */
+    Route::resource('attendance', AttendanceController::class, ['only' => ['index', 'store', 'update']]);
 
 });
 
@@ -85,18 +68,20 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.' ,'namespace' => 'Admin'], fu
      * 静的なページが簡単に確認できるように ClosureでViewを返しています。処理に応じて編集してください。
      * 尚、このコメントアウトはコード提出の際は削除してください。
      */
-    Route::get('attendance', function () {
-        return view('admin.attendance.index');
-    });
-    Route::get('attendance/create', function () {
-        return view('admin.attendance.create');
-    });
-    Route::get('attendance/edit', function () {
-        return view('admin.attendance.edit');
-    });
-    Route::get('attendance/user', function () {
-        return view('admin.attendance.user');
-    });
+    // Route::get('attendance', function () {
+    //     return view('admin.attendance.index');
+    // });
+    // Route::get('attendance/create', function () {
+    //     return view('admin.attendance.create');
+    // });
+    // Route::get('attendance/edit', function () {
+    //     return view('admin.attendance.edit');
+    // });
+    // Route::get('attendance/user', function () {
+    //     return view('admin.attendance.user');
+    // });
+
+    Route::resource('attendance', AttendanceController::class);
     /*
      * ---------------------------------------------------------
      */

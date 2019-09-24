@@ -12,6 +12,7 @@ use App\Http\Requests\User\AttendanceRequest;
 class AttendanceController extends Controller
 {
     private $attendance;
+    private $MODIFICATION_FLG = 0;
 
     public function __construct(Attendance $attendance)
     {
@@ -50,8 +51,12 @@ class AttendanceController extends Controller
     public function store(AttendanceRequest $request)
     {
         $inputs = $request->all();
-        $inputs['modification_flg'] = 0;
-        $this->attendance->fill($inputs)->create($inputs);
+        $this->MODIFICATION_FLG = 0;
+        $inputs['modification_flg'] = $this->MODIFICATION_FLG;
+        $attendance = $this->attendance->todaysRecord(Auth::id());
+        if (empty($attendance)) {
+            $this->attendance->fill($inputs)->create($inputs);
+        }
 
         return redirect()->route('attendance.index');
     }
@@ -115,16 +120,20 @@ class AttendanceController extends Controller
         $inputs = $request->all();
         $inputs['modification_flg'] = 0;
         $inputs['user_id'] = $id;
-        $this->attendance->updateOrCreate(['registration_date' => $inputs['registration_date']],
+        $attendance = $this->attendance->where('user_id', Auth::id())
+            ->where('registration_date', Carbon::today()
+            ->format('Y-m-d'))
+            ->exists();
+        if ($attendance) {
+            return redirect()->route('attendance.index');
+        }
+        $this->attendance->updateOrCreate(['registration_date' => $inputs['registration_date'], 'user_id' => $id],
             ['user_id' => $inputs['user_id'],
             'modification_flg' => $inputs['modification_flg'],
             'registration_date' => $inputs['registration_date'],
             'absence_reason' => $inputs['absence_reason'],
             ]
         );
-        //$this->attendance->checkAbsenceStatus();  //欠席理由を登録する際に今日のレコードがあるかどうかのチェック用メソッド 一旦保留
-
-        // $this->attendance->fill($inputs)->create($inputs);
 
         return redirect()->route('attendance.index');
     }
@@ -137,7 +146,8 @@ class AttendanceController extends Controller
     public function modificationUpdate(AttendanceRequest $request, $id)
     {
         $inputs = $request->all();
-        $inputs['modification_flg'] = 1;
+        $this->MODIFICATION_FLG = 1;
+        $inputs['modification_flg'] = $this->MODIFICATION_FLG;
         $requestDayDate = $this->attendance->whereDate('start_time', $inputs['request_day'])->get();
         if (empty($requestDayDate[0])) {
             return redirect()->route('attendance.index');

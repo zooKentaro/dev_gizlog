@@ -41,7 +41,6 @@ class AttendanceController extends Controller
     public function store(AttendanceRequest $request)
     {
         $inputs = $request->all();
-        $this->MODIFICATION_FLG = 0;
         $inputs['modification_flg'] = $this->MODIFICATION_FLG;
         $attendance = $this->attendance->todaysRecord(Auth::id());
         if (empty($attendance)) {
@@ -76,13 +75,13 @@ class AttendanceController extends Controller
     public function absenceStore(AttendanceRequest $request, $id)
     {
         $inputs = $request->all();
-        $inputs['modification_flg'] = 0;
+        $inputs['modification_flg'] = $this->MODIFICATION_FLG;
         $inputs['user_id'] = $id;
-        $attendance = $this->attendance->where('user_id', Auth::id())
+        $isAttendance = $this->attendance->where('user_id', Auth::id())
             ->where('registration_date', Carbon::today()
             ->format('Y-m-d'))
             ->exists();
-        if ($attendance) {
+        if ($isAttendance) {
             return redirect()->route('attendance.index');
         }
         $this->attendance->updateOrCreate(['registration_date' => $inputs['registration_date'], 'user_id' => $id],

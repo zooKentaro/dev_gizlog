@@ -41,8 +41,7 @@ class Attendance extends Model
     public function attendanceExists($id)
     {
         return $this->where('user_id', $id)
-            ->where('registration_date', Carbon::today()
-            ->format('Y-m-d'))
+            ->where('registration_date', Carbon::today()->format('Y-m-d'))
             ->exists();
     }
 

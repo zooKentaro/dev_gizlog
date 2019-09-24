@@ -77,13 +77,11 @@ class AttendanceController extends Controller
         $inputs = $request->all();
         $inputs['modification_flg'] = $this->MODIFICATION_FLG;
         $inputs['user_id'] = $id;
-        $isAttendance = $this->attendance->where('user_id', Auth::id())
-            ->where('registration_date', Carbon::today()
-            ->format('Y-m-d'))
-            ->exists();
+        $isAttendance = $this->attendance->attendanceExists($id);
         if ($isAttendance) {
             return redirect()->route('attendance.index');
         }
+
         $this->attendance->updateOrCreate(['registration_date' => $inputs['registration_date'], 'user_id' => $id],
             ['user_id' => $inputs['user_id'],
             'modification_flg' => $inputs['modification_flg'],

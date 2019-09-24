@@ -45,7 +45,7 @@
         {{ Form::open(['route' => ['attendance.update', $todayDate['id']], 'method' => 'PUT']) }}
         <input id="date-time-target" name="end_time" type="hidden" value="2019-07-03 12:38:41">
       @else
-        //何も送信しないようにする
+
       @endif
         <input name="user_id" type="hidden" value="{{ $user->id }}">
         <input id="date-time" name="registration_date" type="hidden" value="2019-07-03">

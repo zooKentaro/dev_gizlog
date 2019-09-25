@@ -11,8 +11,6 @@
 |
  */
 
-// use App\Http\Controllers\User\AttendanceController;
-
 use App\Http\Controllers\User;
 use App\Http\Controllers\Admin;
 use App\Models\Attendance;
